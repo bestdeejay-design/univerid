@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <!-- Metatags -->
+  <title>UniverID — цифровая экосистема студенчества</title>
+  <meta name="description" content="Цифровая экосистема университета нового поколения. Единая платформа для студентов, выпускников, преподавателей, вузов и партнёров." />
+  <meta property="og:url" content="https://univerid.ru" />
+  <meta property="og:title" content="UniverID — цифровая экосистема студенчества" />
+  <meta property="og:description" content="Цифровая экосистема университета нового поколения. Единая платформа для студентов, выпускников, преподавателей, вузов и партнёров." />
+  <meta property="og:type" content="website" />
+  <meta property="og:image" content="https://univerid.ru/images/og-image.jpg" />
+  <link rel="canonical" href="https://univerid.ru">
+  
+  <meta name="format-detection" content="telephone=no" />
+  <meta http-equiv="x-dns-prefetch-control" content="on">
+  <link rel="dns-prefetch" href="https://ws.tildacdn.com">
+  <link rel="dns-prefetch" href="https://cdnjs.cloudflare.com">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  
+  <link rel="shortcut icon" href="images/tildafavicon.ico" type="image/x-icon" />
+  <link rel="apple-touch-icon" href="images/tildafavicon.ico">
+  
+  <!-- Security headers -->
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://cdnjs.cloudflare.com https://neo.tildacdn.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https:;">
+  
+  <!-- External stylesheets -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" integrity="sha384-LqzKLRH6/kJrzlQgYU6x2/zoLu/uMWR/jK5hb8cnqGFMvTbDDWfRexjO2Jy6z1" crossorigin="anonymous">
+  <link rel="stylesheet" href="css/tilda-grid-3.0.min.css" type="text/css" media="all" onerror="this.loaderr='y';"/>
+  <link rel="stylesheet" href="css/tilda-blocks-page79859126.min.css?t=1761036043" type="text/css" media="all" onerror="this.loaderr='y';" />
+  <link rel="stylesheet" href="css/fonts-tildasans.css" type="text/css" media="all" onerror="this.loaderr='y';" />
+  
+  <!-- Inline critical CSS -->
+  <style>
+    * { 
+      margin: 0; 
+      padding: 0; 
+      box-sizing: border-box; 
+    }
+    
+    body {
+      font-family: 'Inter', sans-serif;
+      background: #0F172A;
+      color: white;
+      overflow-x: hidden;
+    }
+    
+    section { 
+      padding: 120px 8%; 
+    }
+    
+    .hero { 
+      min-height: 100vh; 
+      display: flex; 
+      flex-direction: column; 
+      justify-content: center; 
+      padding-left: 8%; 
+      position: relative; 
+    }
+    
+    .hero::before {
+      content: ''; 
+      position: absolute; 
+      top: 0; 
+      left: 0; 
+      width: 100%; 
+      height: 100%;
+      background: radial-gradient(circle at 30% 40%, rgba(37, 99, 235, 0.2), transparent 60%),
+                  radial-gradient(circle at 70% 80%, rgba(0, 209, 255, 0.15), transparent 60%);
+      z-index: -1;
+    }
+    
+    h1 { 
+      font-size: clamp(2.5rem, 6vw, 4.5rem); 
+      font-weight: 800; 
+      line-height: 1.1; 
+      margin-bottom: 1.5rem; 
+    }
+    
+    h2 { 
+      font-size: clamp(1.2rem, 3vw, 1.6rem); 
+      font-weight: 400; 
+      line-height: 1.5; 
+      max-width: 700px; 
+      margin-bottom: 2.5rem; 
+    }
+    
+    .btn { 
+      display: inline-block; 
+      padding: 14px 32px; 
+      border-radius: 12px; 
+      font-weight: 600; 
+      text-decoration: none; 
+      margin-right: 1rem; 
+      margin-top: 1rem; 
+    }
+    
+    .btn-primary { 
+      background: #2563EB; 
+      color: white; 
+    }
+    
+    .btn-secondary { 
+      background: transparent; 
+      border: 2px solid rgba(255,255,255,0.2); 
+      color: white; 
+    }
+    
+    .grid { 
+      display: grid; 
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); 
+      gap: 2.2rem; 
+      margin-top: 3rem; 
+    }
+    
+    .card { 
+      background: rgba(255,255,255,0.04); 
+      padding: 2rem; 
+      border-radius: 20px; 
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    
+    .card h3 { 
+      margin: 1rem 0; 
+      font-size: 1.3rem; 
+    }
+    
+    .card p { 
+      color: #CBD5E1; 
+      line-height: 1.6; 
+      font-size: 0.95rem; 
+    }
+    
+    .section-title { 
+      text-align: center; 
+      font-size: clamp(2rem, 5vw, 3rem); 
+      font-weight: 800; 
+      margin-bottom: 3.5rem; 
+    }
+    
+    .partners-logos { 
+      text-align: center; 
+      color: #94A3B8; 
+      font-size: 1.2rem; 
+      line-height: 2; 
+    }
+    
+    .gov-logos { 
+      display: flex; 
+      justify-content: center; 
+      flex-wrap: wrap; 
+      gap: 2.5rem; 
+      margin-top: 2rem; 
+    }
+    
+    .gov-item { 
+      background: rgba(255,255,255,0.03); 
+      padding: 1rem 1.5rem; 
+      border-radius: 12px; 
+      text-align: center; 
+    }
+    
+    /* Responsive design */
+    @media (max-width: 768px) {
+      section { 
+        padding: 80px 5%; 
+      }
+      
+      .hero { 
+        padding-left: 5%; 
+        padding-right: 5%; 
+        text-align: center;
+      }
+      
+      .btn {
+        display: block;
+        margin: 10px auto;
+        width: 80%;
+        max-width: 300px;
+      }
+      
+      .grid { 
+        grid-template-columns: 1fr; 
+      }
+    }
+  </style>
+  
+  <!-- Preload scripts -->
+  <link rel="preload" href="js/tilda-polyfill-1.0.min.js" as="script">
+  <link rel="preload" href="js/tilda-scripts-3.0.min.js" as="script">
+  <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" as="script">
+  
+  <!-- Tilda assets -->
+  <script nomodule src="js/tilda-polyfill-1.0.min.js" charset="utf-8"></script>
+  <script src="https://neo.tildacdn.com/js/tilda-fallback-1.0.min.js" async charset="utf-8"></script>
+  <script type="text/javascript">
+    function t_onReady(func) {
+      if(document.readyState!='loading') {
+        func();
+      } else {
+        document.addEventListener('DOMContentLoaded',func);
+      }
+    }
+    
+    function t_onFuncLoad(funcName,okFunc,time) {
+      if(typeof window[funcName]==='function') {
+        okFunc();
+      } else {
+        setTimeout(function() {
+          t_onFuncLoad(funcName,okFunc,time);
+        },(time||100));
+      }
+    }
+  </script>
+</head>
+<body class="t-body">
+  <!-- Main content -->
+  <main>
+    <!-- 1. HERO -->
+    <section class="hero" aria-labelledby="hero-title">
+      <h1 id="hero-title">UniverID — цифровая жизнь студента.<br>От поступления до карьеры.</h1>
+      <h2 id="hero-subtitle">Единая экосистема для студентов, выпускников, преподавателей, вузов и партнёров. Учёба, карьера, льготы, сообщество — всё в одном профиле.</h2>
+      <a href="#" class="btn btn-primary" id="btn1" aria-label="Получить демо-доступ">Демо-доступ</a>
+      <a href="#" class="btn btn-secondary" id="btn2" aria-label="Подробнее для вузов и госструктур">Для вузов и госструктур</a>
+    </section>
+    
+    <!-- 2. ПРОБЛЕМА → РЕШЕНИЕ -->
+    <section class="problem" id="problem" aria-labelledby="prob-title">
+      <div style="max-width: 1000px; margin: 0 auto;">
+        <h2 class="section-title" id="prob-title">Сегодня — фрагменты. Завтра — единая среда.</h2>
+        <div style="display: flex; flex-wrap: wrap; gap: 3rem;">
+          <div style="flex: 1; min-width: 300px;">
+            <h3 style="color: #F87171; margin-bottom: 1.5rem;">До UniverID</h3>
+            <ul style="list-style: none; color: #E2E8F0;" role="list">
+              <li aria-label="Расписание в Excel">• Расписание в Excel</li>
+              <li aria-label="Стипендия в 1С">• Стипендия — в 1С</li>
+              <li aria-label="Вакансии на hh.ru">• Вакансии — на hh.ru</li>
+              <li aria-label="Льготы на бумаге">• Льготы — на бумаге</li>
+              <li aria-label="Нетворкинг в Telegram">• Нетворкинг — в Telegram</li>
+              <li aria-label="Поддержка только по будням">• Поддержка — только по будням</li>
+            </ul>
+          </div>
+          <div style="flex: 1; min-width: 300px;">
+            <h3 style="color: #34D399; margin-bottom: 1.5rem;">С UniverID</h3>
+            <ul style="list-style: none; color: #E2E8F0;" role="list">
+              <li aria-label="Единое расписание + синхронизация">• Единое расписание + синхронизация</li>
+              <li aria-label="Цифровая студенческая карта">• Цифровая студенческая карта</li>
+              <li aria-label="Персонализированные стажировки">• Персонализированные стажировки</li>
+              <li aria-label="Скидки от банков в один клик">• Скидки от банков в один клик</li>
+              <li aria-label="Закрытое сообщество выпускников">• Закрытое сообщество выпускников</li>
+              <li aria-label="Онлайн-психолог 24/7">• Онлайн-психолог 24/7</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+    
+    <!-- 3. МОДУЛИ ЭКОСИСТЕМЫ (все 12 направлений) -->
+    <section class="modules" id="modules" aria-labelledby="modules-title">
+      <h2 class="section-title" id="modules-title">Цифровая экосистема университета</h2>
+      <div class="grid">
+        <div class="card" data-card><h3>🎓 Учёба</h3><p>Расписание, журнал, задания, AI-проверка, консультации</p></div>
+        <div class="card" data-card><h3>💼 Карьера</h3><p>Вакансии, стажировки, микро-задачи, NFT-диплом</p></div>
+        <div class="card" data-card><h3>🎟️ Льготы</h3><p>Скидки, IT-лицензии, транспорт, культура, студкарта</p></div>
+        <div class="card" data-card><h3>🤝 Сообщество</h3><p>Выпускники, менторство, группы, истории успеха</p></div>
+        <div class="card" data-card><h3>🎯 Активность</h3><p>Мероприятия, челленджи, QR-чекин, рейтинги</p></div>
+        <div class="card" data-card><h3>🧠 Поддержка</h3><p>Психолог, здоровье, Well-being, AI-ассистент</p></div>
+        <div class="card" data-card><h3>🏠 Жильё</h3><p>Общежития, аренда, ЖК, финансовые сервисы</p></div>
+        <div class="card" data-card><h3>🌍 Международка</h3><p>Обмены, поддержка иностранцев, Study in Russia</p></div>
+        <div class="card" data-card><h3>👨‍🏫 Преподаватели</h3><p>Ассистент, гранты, аналитика, менторство</p></div>
+        <div class="card" data-card><h3>🔬 Наука</h3><p>Гранты, публикации, eLibrary, Scopus, лаборатории</p></div>
+        <div class="card" data-card><h3>👨‍👩‍👧‍👦 Родители</h3><p>Уведомления, календарь, безопасность, FAQ</p></div>
+        <div class="card" data-card><h3>🌱 Экология</h3><p>Эко-инициативы, раздельный сбор, соцпроекты</p></div>
+      </div>
+    </section>
+    
+    <!-- 4. ПАРТНЁРЫ -->
+    <section class="partners" id="partners" aria-labelledby="partners-title">
+      <h2 class="section-title" id="partners-title">Поддержка от лидеров</h2>
+      <div class="partners-logos" role="region" aria-label="Логотипы партнеров">
+        Сбер • Т-Банк • ВТБ • VK • Яндекс • Figma • JetBrains • Минпросвещения • Росмолодёжь
+      </div>
+    </section>
+    
+    <!-- 5. ДЛЯ БАНКОВ -->
+    <section class="for-banks" id="banks" aria-labelledby="banks-title">
+      <div style="max-width: 900px; margin: 0 auto; text-align: center;">
+        <h2 class="section-title" id="banks-title">Прямой канал к 10 млн студентов</h2>
+        <p style="font-size: 1.1rem; color: #E2E8F0; line-height: 1.7;">
+          Банки и IT-гиганты инвестируют через спонсорские разделы: вакансии, стипендии, события, льготы — всё с верификацией и персонализацией.
+        </p>
+      </div>
+    </section>
+    
+    <!-- 6. ГОСИНТЕГРАЦИЯ -->
+    <section class="gov" id="gov" aria-labelledby="gov-title">
+      <h2 class="section-title" id="gov-title">Интеграция в госэкосистему</h2>
+      <div class="gov-logos" role="region" aria-label="Государственные интеграции">
+        <div class="gov-item">Госуслуги</div>
+        <div class="gov-item">Навигатор допобразования</div>
+        <div class="gov-item">ЦОС «Цифровая образовательная среда»</div>
+        <div class="gov-item">Национальный проект «Образование»</div>
+      </div>
+    </section>
+    
+    <!-- 7. CTA -->
+    <section class="cta" id="cta" style="background: linear-gradient(135deg, #111827 0%, #1E293B 100%);" aria-labelledby="cta-title">
+      <h2 class="section-title" id="cta-title">Станьте частью национальной цифровой среды студенчества</h2>
+      <div style="text-align: center;">
+        <a href="#" class="btn btn-primary" id="cta-btn1" aria-label="Для студентов">Для студентов</a>
+        <a href="#" class="btn btn-secondary" id="cta-btn2" aria-label="Для вузов">Для вузов</a>
+        <a href="#" class="btn btn-secondary" id="cta-btn3" aria-label="Для банков">Для банков</a>
+      </div>
+    </section>
+  </main>
+  
+  <!-- Footer -->
+  <footer style="padding: 20px; text-align: center; background: #0c1220; color: #94a3b8;">
+    <p>&copy; 2026 UniverID. Все права защищены.</p>
+  </footer>
+  
+  <!-- Scripts -->
+  <script src="js/tilda-scripts-3.0.min.js" charset="utf-8" defer onerror="this.loaderr='y';"></script>
+  <script src="js/tilda-blocks-page79859126.min.js?t=1761036043" charset="utf-8" async onerror="this.loaderr='y';"></script>
+  <script src="js/lazyload-1.3.min.export.js" charset="utf-8" async onerror="this.loaderr='y';"></script>
+  <script src="js/tilda-events-1.0.min.js" charset="utf-8" async onerror="this.loaderr='y';"></script>
+  
+  <!-- Animation library with SRI -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" integrity="sha384-kg3C8TzFkgnHDuxKWNWHYPefWFzEZUTMRKKPQzxEyHA6LsN87NZuZwP/J+xHgMVw" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" integrity="sha384-4VF6mJijEd6mGD8LXRYYNxXkt0h6QqN4fYgFWZzHKSAJ5OrRvWyqz094p0ZzUyMI" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/SplitText.min.js" integrity="sha384-6U9QbPj7W5B3kpdLkEGU3N/hzJwPDdy5JQ+1ft1OMq0ymDXt5UqwWihP0CzU6q3" crossorigin="anonymous"></script>
+  
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      // Register ScrollTrigger plugin
+      gsap.registerPlugin(ScrollTrigger);
+      
+      // === HERO ===
+      const heroTitle = new SplitText("#hero-title", { type: "words, chars" });
+      gsap.set(heroTitle.chars, { opacity: 0, y: 80, rotateX: -90, transformOrigin: "0% 50%" });
+      gsap.to(heroTitle.chars, {
+        opacity: 1, y: 0, rotateX: 0, duration: 1.4, ease: "expo.out", stagger: 0.025
+      });
+      gsap.from("#hero-subtitle", { duration: 1, y: 30, opacity: 0, delay: 0.6, ease: "power2.out" });
+      gsap.from(["#btn1", "#btn2"], { duration: 0.8, y: 20, opacity: 0, delay: 0.9, stagger: 0.1, ease: "power2.out" });
+
+      // === PROBLEM ===
+      gsap.from("#prob-title", { scrollTrigger: { trigger: "#problem", start: "top 80%" }, duration: 1, y: 40, opacity: 0, ease: "power2.out" });
+      gsap.from("#problem ul", { scrollTrigger: { trigger: "#problem", start: "top 75%" }, duration: 1, opacity: 0, x: -50, stagger: 0.2, ease: "back.out(1.4)" });
+
+      // === MODULES ===
+      gsap.from("#modules-title", { scrollTrigger: { trigger: "#modules", start: "top 80%" }, duration: 1, y: 40, opacity: 0, ease: "power2.out" });
+      gsap.from("[data-card]", {
+        scrollTrigger: { trigger: "#modules", start: "top 75%" },
+        duration: 0.9, y: 60, opacity: 0, scale: 0.92, ease: "back.out(1.7)", stagger: 0.08
+      });
+
+      // Hover на карточки
+      document.querySelectorAll("[data-card]").forEach(card => {
+        card.addEventListener("mouseenter", () => gsap.to(card, { duration: 0.4, y: -10, scale: 1.03, boxShadow: "0 20px 40px rgba(0,0,0,0.4)", ease: "power2.out" }));
+        card.addEventListener("mouseleave", () => gsap.to(card, { duration: 0.4, y: 0, scale: 1, boxShadow: "none", ease: "power2.out" }));
+      });
+
+      // === PARTNERS ===
+      gsap.from("#partners-title", { scrollTrigger: { trigger: "#partners", start: "top 80%" }, duration: 1, y: 30, opacity: 0, ease: "power2.out" });
+      gsap.from(".partners-logos", { scrollTrigger: { trigger: "#partners", start: "top 75%" }, duration: 1, opacity: 0, y: 20, ease: "expo.out" });
+
+      // === BANKS ===
+      gsap.from("#banks-title", { scrollTrigger: { trigger: "#banks", start: "top 80%" }, duration: 1, y: 30, opacity: 0, ease: "power2.out" });
+      gsap.from("#banks p", { scrollTrigger: { trigger: "#banks", start: "top 75%" }, duration: 1, opacity: 0, y: 20, ease: "power2.out" });
+
+      // === GOV ===
+      gsap.from("#gov-title", { scrollTrigger: { trigger: "#gov", start: "top 80%" }, duration: 1, y: 30, opacity: 0, ease: "power2.out" });
+      gsap.from(".gov-item", { scrollTrigger: { trigger: "#gov", start: "top 75%" }, duration: 0.8, opacity: 0, scale: 0.8, stagger: 0.1, ease: "back.out(1.3)" });
+
+      // === CTA ===
+      gsap.from("#cta-title", { scrollTrigger: { trigger: "#cta", start: "top 80%" }, duration: 1, y: 30, opacity: 0, ease: "expo.out" });
+      gsap.from("#cta a", { scrollTrigger: { trigger: "#cta", start: "top 75%" }, duration: 0.8, opacity: 0, y: 20, stagger: 0.15, ease: "power2.out" });
+      
+      // Cleanup ScrollTrigger on page unload
+      window.addEventListener('beforeunload', () => {
+        ScrollTrigger.getAll().forEach(trigger => trigger.kill());
+      });
+    });
+  </script>
+  
+  <!-- Analytics -->
+  <script type="text/javascript">window.dataLayer=window.dataLayer||[];</script>
+  <script type="text/javascript">
+    (function() {
+      if((/bot|google|yandex|baidu|bing|msn|duckduckbot|teoma|slurp|crawler|spider|robot|crawling|facebook/i.test(navigator.userAgent))===false&&typeof(sessionStorage)!='undefined'&&sessionStorage.getItem('visited')!=='y'&&document.visibilityState){
+        var style=document.createElement('style');
+        style.type='text/css';
+        style.innerHTML='@media screen and (min-width: 980px) {.t-records {opacity: 0;}.t-records_animated {-webkit-transition: opacity ease-in-out .2s;-moz-transition: opacity ease-in-out .2s;-o-transition: opacity ease-in-out .2s;transition: opacity ease-in-out .2s;}.t-records.t-records_visible {opacity: 1;}}';
+        document.getElementsByTagName('head')[0].appendChild(style);
+        function t_setvisRecs(){
+          var alr=document.querySelectorAll('.t-records');
+          Array.prototype.forEach.call(alr,function(el) {
+            el.classList.add("t-records_animated");
+          });
+          setTimeout(function() {
+            Array.prototype.forEach.call(alr,function(el) {
+              el.classList.add("t-records_visible");
+            });
+            sessionStorage.setItem("visited","y");
+          },400);
+        }
+        document.addEventListener('DOMContentLoaded',t_setvisRecs);
+      }
+    })();
+  </script>
+  
+  <!--allrecords-->
+  <div id="allrecords" data-tilda-export="yes" class="t-records" data-hook="blocks-collection-content-node" data-tilda-project-id="15185956" data-tilda-page-id="79859126" data-tilda-formskey="732e249f7f7fa288f911405a15185956" data-tilda-cookie="no" data-tilda-root-zone="com" data-tilda-page-headcode="yes" data-tilda-project-country="RU">
+  </div>
+  <!--/allrecords-->
+  
+  <!-- Stat -->
+  <script type="text/javascript">
+    if(!window.mainTracker) {window.mainTracker='tilda';}
+    window.tildastatcookie='no';
+    setTimeout(function(){
+      (function(d,w,k,o,g) {
+        var n=d.getElementsByTagName(o)[0],
+        s=d.createElement(o),
+        f=function(){
+          n.parentNode.insertBefore(s,n);
+        };
+        s.type="text/javascript";
+        s.async=true;
+        s.key=k;
+        s.id="tildastatscript";
+        s.src=g;
+        if(w.opera=="[object Opera]") {
+          d.addEventListener("DOMContentLoaded",f,false);
+        } else {
+          f();
+        }
+      })(document,window,'3cc13bfd3e6a2add958cc45d1bb61a47','script','js/tilda-stat-1.0.min.js');
+    },2000);
+  </script>
+</body>
+</html>
