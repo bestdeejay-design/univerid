@@ -1,0 +1,136 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8" /> <meta http-equiv="Content-Type" content="text/html; charset=utf-8" /> <meta name="viewport" content="width=device-width, initial-scale=1.0" /> <!--metatextblock--> <title>Blank page</title> <meta property="og:url" content="http://univerid.ru/test" /> <meta property="og:title" content="Blank page" /> <meta property="og:description" content="" /> <meta property="og:type" content="website" /> <link rel="canonical" href="http://univerid.ru/test"> <!--/metatextblock--> <meta name="format-detection" content="telephone=no" /> <meta http-equiv="x-dns-prefetch-control" content="on"> <link rel="dns-prefetch" href="https://ws.tildacdn.com">  <link rel="shortcut icon" href="images/tildafavicon.ico" type="image/x-icon" /> <!-- Assets --> <script src="https://neo.tildacdn.com/js/tilda-fallback-1.0.min.js" async charset="utf-8"></script> <link rel="stylesheet" href="css/tilda-grid-3.0.min.css" type="text/css" media="all" onerror="this.loaderr='y';"/> <link rel="stylesheet" href="css/tilda-blocks-page88208496.min.css?t=1761045196" type="text/css" media="all" onerror="this.loaderr='y';" /> <link rel="stylesheet" href="css/fonts-tildasans.css" type="text/css" media="all" onerror="this.loaderr='y';" /> <script nomodule src="js/tilda-polyfill-1.0.min.js" charset="utf-8"></script> <script type="text/javascript">function t_onReady(func) {if(document.readyState!='loading') {func();} else {document.addEventListener('DOMContentLoaded',func);}}
+function t_onFuncLoad(funcName,okFunc,time) {if(typeof window[funcName]==='function') {okFunc();} else {setTimeout(function() {t_onFuncLoad(funcName,okFunc,time);},(time||100));}}</script> <script src="js/tilda-scripts-3.0.min.js" charset="utf-8" defer onerror="this.loaderr='y';"></script> <script src="js/tilda-blocks-page88208496.min.js?t=1761045196" charset="utf-8" async onerror="this.loaderr='y';"></script> <script src="js/lazyload-1.3.min.export.js" charset="utf-8" async onerror="this.loaderr='y';"></script> <script src="js/tilda-events-1.0.min.js" charset="utf-8" async onerror="this.loaderr='y';"></script> <!-- nominify begin --><!DOCTYPE html> <html lang="ru"> <head> <meta charset="UTF-8" /> <meta name="viewport" content="width=device-width, initial-scale=1.0"/> <title>UniverID — Цифровая экосистема университета</title> <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background: #0F172A;
+      color: white;
+      line-height: 1.6;
+    }
+    /* Общие стили секций */
+    section {
+      padding: 100px 8%;
+      opacity: 0;
+    }
+    h2 {
+      font-size: 2rem;
+      margin-bottom: 1.5rem;
+      font-weight: 700;
+    }
+    ul {
+      list-style: none;
+      padding-left: 0;
+    }
+    li { margin-bottom: 0.6rem; color: #CBD5E1; }
+    /* Hero */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 0 8%;
+      position: relative;
+      background: #0F172A;
+    }
+    .hero::before {
+      content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+      background: radial-gradient(circle at 30% 40%, rgba(37, 99, 235, 0.25), transparent 60%),
+                  radial-gradient(circle at 70% 80%, rgba(0, 209, 255, 0.15), transparent 60%);
+      z-index: -1;
+    }
+    .hero h1 {
+      font-size: clamp(2.5rem, 6vw, 4.2rem);
+      font-weight: 800;
+      line-height: 1.1;
+      margin-bottom: 1.5rem;
+    }
+    .hero p {
+      font-size: 1.3rem;
+      max-width: 700px;
+      color: #E2E8F0;
+    }
+    /* Эффекты */
+    .fade { transform: translateY(30px); transition: opacity 0.8s ease, transform 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275); }
+    .fade.appear { opacity: 1; transform: translateY(0); }
+    .slide-left { transform: translateX(-60px); transition: opacity 0.8s ease, transform 0.8s ease; }
+    .slide-left.appear { opacity: 1; transform: translateX(0); }
+    .slide-right { transform: translateX(60px); transition: opacity 0.8s ease, transform 0.8s ease; }
+    .slide-right.appear { opacity: 1; transform: translateX(0); }
+    .scale { transform: scale(0.92); transition: opacity 0.7s ease, transform 0.7s cubic-bezier(0.175, 0.885, 0.32, 1.275); }
+    .scale.appear { opacity: 1; transform: scale(1); }
+    .bounce { transform: translateY(50px); transition: opacity 0.6s ease, transform 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55); }
+    .bounce.appear { opacity: 1; transform: translateY(0); }
+    .rotate { transform: rotateY(-25deg); transition: opacity 0.9s ease, transform 0.9s cubic-bezier(0.22, 0.61, 0.36, 1); }
+    .rotate.appear { opacity: 1; transform: rotateY(0); }
+    .stagger-item {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+    .stagger-item.appear {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .delay-fade {
+      transition: opacity 1s ease;
+      opacity: 0;
+    }
+    .delay-fade.appear {
+      opacity: 1;
+    }
+    .parallax {
+      transform: translateY(40px) scale(0.98);
+      transition: opacity 0.9s ease, transform 0.9s ease;
+    }
+    .parallax.appear {
+      opacity: 1;
+      transform: translateY(0) scale(1);
+    }
+    .reveal {
+      transform: scale(0.8);
+      transition: opacity 0.7s ease, transform 0.7s cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+    .reveal.appear {
+      opacity: 1;
+      transform: scale(1);
+    }
+    .ease-out {
+      transform: translateY(50px);
+      transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+    }
+    .ease-out.appear {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  </style> </head> <body> <!-- Hero --> <section class="hero fade" id="hero"> <h1>UniverID</h1> <p>Цифровая экосистема университета: от поступления до карьеры — всё в одном пространстве.</p> </section> <!-- 1. Основные пользователи --> <section class="fade" data-effect="fade"> <h2>🎓 Основные пользователи</h2> <ul> <li>• Студенты</li> <li>• Абитуриенты</li> <li>• Выпускники</li> <li>• Преподаватели</li> <li>• Администрация</li> <li>• Работодатели / Спонсоры</li> </ul> </section> <!-- 2. Ядро: Авторизация --> <section class="scale" data-effect="scale"> <h2>🔐 Ядро: Авторизация и профили</h2> <ul> <li>• Авторизация через Госуслуги / ЛК вуза / SSO</li> <li>• Роли и персонализация</li> <li>• Цифровые профили</li> <li>• История активности и приватность</li> </ul> </section> <!-- 3. Учебный процесс --> <section class="slide-left" data-effect="slide-left"> <h2>📅 Учебный процесс</h2> <ul> <li>• Расписание, экзамены, практики</li> <li>• Уведомления и экспорт в календарь</li> <li>• Электронный журнал и успеваемость</li> <li>• Сдача заданий + AI-проверка</li> <li>• Онлайн-запись на консультации</li> </ul> </section> <!-- 4. Карьера и практики --> <section class="slide-right" data-effect="slide-right"> <h2>💼 Карьера и практики</h2> <ul> <li>• Вакансии, стажировки, микро-задачи от стартапов</li> <li>• Волонтёрство и соцпроекты</li> <li>• Цифровое резюме и NFT-диплом</li> <li>• Онлайн-собеседования и карьерные консультации</li> <li>• Аналитика: ТОП работодателей, карьерный трек</li> </ul> </section> <!-- 5. Сообщество --> <section class="bounce" data-effect="bounce"> <h2>🤝 Сообщество и нетворкинг</h2> <ul> <li>• Выпускники: поиск, чаты, менторство</li> <li>• Группы по интересам, факультетам, годам выпуска</li> <li>• Истории успеха и программа лояльности</li> </ul> </section> <!-- 6. Внеучебная активность --> <section id="activity"> <h2>🎯 Внеучебная активность</h2> <ul> <li class="stagger-item" data-stagger>• Единая афиша мероприятий</li> <li class="stagger-item" data-stagger>• Онлайн-регистрация + QR-чекин</li> <li class="stagger-item" data-stagger>• Создание ивентов студентами</li> <li class="stagger-item" data-stagger>• Отзывы, рейтинги, фото/видео отчёты</li> </ul> </section> <!-- 7. Привлечение абитуриентов --> <section class="rotate" data-effect="rotate"> <h2>🎮 Привлечение и вовлечение</h2> <ul> <li>• 3D-туры, кейсы, олимпиады</li> <li>• Калькулятор поступления</li> <li>• Геймификация: баллы, бейджи, челленджи</li> <li>• Обмен баллов на мерч, курсы, скидки</li> </ul> </section> <!-- 8. Поддержка преподавателей --> <section class="delay-fade" data-effect="delay-fade"> <h2>👨‍🏫 Поддержка преподавателей</h2> <ul> <li>• Цифровой ассистент (проверка, аналитика)</li> <li>• Бронирование слотов для экспертов</li> <li>• Менторство и внутренние гранты</li> <li>• Рейтинги педагогов</li> </ul> </section> <!-- 9. Жильё и инфраструктура --> <section class="parallax" data-effect="parallax"> <h2>🏠 Жильё и инфраструктура</h2> <ul> <li>• Общежития: заявка, оплата, рейтинг</li> <li>• Аренда: поиск, верификация, карта ЖК</li> <li>• Финансовые сервисы и “Умный кампус”</li> </ul> </section> <!-- 10. Здоровье и поддержка --> <section class="reveal" data-effect="reveal"> <h2>🧠 Здоровье и психологическая поддержка</h2> <ul> <li>• Запись к психологу / врачу</li> <li>• Анонимный чат и “тревожный индикатор”</li> <li>• Бот для медитаций и Well-being опросы</li> <li>• Группы поддержки и онлайн-практики</li> </ul> </section> <!-- 11. Международная деятельность --> <section class="slide-left" data-effect="slide-left"> <h2>🌍 Международная деятельность</h2> <ul> <li>• Обмены и стажировки за рубежом</li> <li>• Поддержка иностранных студентов</li> <li>• Интеграция с Study in Russia</li> </ul> </section> <!-- 12. Семейный кабинет --> <section class="slide-right" data-effect="slide-right"> <h2>👨‍👩‍👧‍👦 Семейный кабинет (для родителей)</h2> <ul> <li>• Уведомления: поступил, сдал сессию</li> <li>• Календарь важных дат</li> <li>• FAQ и онлайн-встречи</li> <li>• Безопасность: студент контролирует доступ</li> </ul> </section> <!-- 13. Научная деятельность --> <section class="bounce" data-effect="bounce"> <h2>🔬 Научная деятельность</h2> <ul> <li>• Научные группы и лаборатории</li> <li>• Поиск научрука, гранты, публикации</li> <li>• Портфолио исследователя</li> <li>• Интеграция с eLibrary, Scopus</li> </ul> </section> <!-- 14. Льготы и привилегии --> <section class="ease-out" data-effect="ease-out"> <h2>🎟️ Льготы и премиум-преимущества</h2> <ul> <li>• Цифровая студенческая карта (QR/NFC)</li> <li>• Скидки: транспорт, IT, спорт, культура</li> <li>• Бесплатные лицензии (Figma, JetBrains…)</li> <li>• Персонализированные предложения</li> </ul> </section> <!-- 15. Спонсоры и монетизация --> <section class="fade" data-effect="fade"> <h2>💰 Спонсоры и монетизация</h2> <ul> <li>• Партнёрские льготы и брендированные челленджи</li> <li>• Спонсорство мероприятий и курсов</li> <li>• Персонализированная реклама и геотаргетинг</li> <li>• Корпоративные кабинеты и аналитика</li> </ul> </section> <!-- 16. Устойчивое развитие --> <section class="scale" data-effect="scale"> <h2>🌱 Устойчивое развитие</h2> <ul> <li>• Эко-инициативы: раздельный сбор</li> <li>• Эко-рейтинги и челленджи</li> <li>• Социальные проекты и волонтёрство</li> <li>• “Зелёный кампус” — датчики и отчёты</li> </ul> </section> <!-- 17. Технологии и интеграции --> <section class="rotate" data-effect="rotate"> <h2>🤖 Технологии и интеграции</h2> <ul> <li>• AI-ассистент и чат-бот</li> <li>• Рекомендательные системы</li> <li>• Интеграции: Moodle, 1С, hh.ru, Госуслуги</li> <li>• Open API и PWA</li> </ul> </section> <!-- 18. Аналитика и управление --> <section class="delay-fade" data-effect="delay-fade"> <h2>📊 Аналитика и управление</h2> <ul> <li>• Дашборды: вовлечённость, успеваемость</li> <li>• Аналитика по трудоустройству выпускников</li> <li>• ROI партнёрских программ</li> <li>• Отчёты для Минобрнауки</li> </ul> </section> <!-- 19. Обратная связь --> <section class="parallax" data-effect="parallax"> <h2>🗳️ Обратная связь и управление</h2> <ul> <li>• Анонимные опросы и голосования</li> <li>• Система предложений с рейтингом</li> <li>• Открытые отчёты администрации</li> <li>• Тикет-система и модерация</li> </ul> </section> <!-- 20. Безопасность --> <section class="reveal" data-effect="reveal"> <h2>🛡️ Безопасность и соответствие</h2> <ul> <li>• GDPR / 152-ФЗ</li> <li>• Шифрование и 2FA</li> <li>• Аудит и резервное копирование</li> <li>• Политика конфиденциальности</li> </ul> </section> <!-- 21. Масштабирование --> <section class="ease-out" data-effect="ease-out"> <h2>🌐 Масштабирование</h2> <ul> <li>• SaaS-модель для других вузов</li> <li>• Конструктор модулей</li> <li>• Мультиязычность и облачная инфраструктура</li> <li>• Админ-панель и поддержка филиалов</li> </ul> </section> <!-- НАТИВНЫЙ JS --> <script>
+    // Проверка видимости элемента
+    function isInViewport(el) {
+      const rect = el.getBoundingClientRect();
+      return rect.top <= window.innerHeight && rect.bottom >= 0;
+    }
+    // Анимация Hero — сразу
+    setTimeout(() => {
+      document.getElementById('hero').classList.add('appear');
+    }, 200);
+    // Анимация при скролле
+    function animateOnScroll() {
+      // Обычные блоки
+      document.querySelectorAll('[data-effect]').forEach(el => {
+        if (isInViewport(el) && !el.classList.contains('appear')) {
+          el.classList.add('appear');
+        }
+      });
+      // Stagger-блоки (внеучебная активность)
+      document.querySelectorAll('[data-stagger]').forEach((el, i) => {
+        if (isInViewport(document.getElementById('activity')) && !el.classList.contains('appear')) {
+          setTimeout(() => el.classList.add('appear'), i * 120);
+        }
+      });
+    }
+    // Запуск
+    window.addEventListener('load', animateOnScroll);
+    window.addEventListener('scroll', animateOnScroll);
+    window.addEventListener('resize', animateOnScroll);
+  </script> </body> </html><!-- nominify end --><script type="text/javascript">window.dataLayer=window.dataLayer||[];</script> <script type="text/javascript">(function() {if((/bot|google|yandex|baidu|bing|msn|duckduckbot|teoma|slurp|crawler|spider|robot|crawling|facebook/i.test(navigator.userAgent))===false&&typeof(sessionStorage)!='undefined'&&sessionStorage.getItem('visited')!=='y'&&document.visibilityState){var style=document.createElement('style');style.type='text/css';style.innerHTML='@media screen and (min-width: 980px) {.t-records {opacity: 0;}.t-records_animated {-webkit-transition: opacity ease-in-out .2s;-moz-transition: opacity ease-in-out .2s;-o-transition: opacity ease-in-out .2s;transition: opacity ease-in-out .2s;}.t-records.t-records_visible {opacity: 1;}}';document.getElementsByTagName('head')[0].appendChild(style);function t_setvisRecs(){var alr=document.querySelectorAll('.t-records');Array.prototype.forEach.call(alr,function(el) {el.classList.add("t-records_animated");});setTimeout(function() {Array.prototype.forEach.call(alr,function(el) {el.classList.add("t-records_visible");});sessionStorage.setItem("visited","y");},400);}
+document.addEventListener('DOMContentLoaded',t_setvisRecs);}})();</script></head> <body class="t-body" style="margin:0;"> <!--allrecords--> <div id="allrecords" data-tilda-export="yes" class="t-records" data-hook="blocks-collection-content-node" data-tilda-project-id="15185956" data-tilda-page-id="88208496" data-tilda-page-alias="test" data-tilda-formskey="732e249f7f7fa288f911405a15185956" data-tilda-cookie="no" data-tilda-root-zone="com" data-tilda-page-headcode="yes" data-tilda-project-country="RU"> </div> <!--/allrecords--> <!-- Stat --> <script type="text/javascript">if(!window.mainTracker) {window.mainTracker='tilda';}
+window.tildastatcookie='no';setTimeout(function(){(function(d,w,k,o,g) {var n=d.getElementsByTagName(o)[0],s=d.createElement(o),f=function(){n.parentNode.insertBefore(s,n);};s.type="text/javascript";s.async=true;s.key=k;s.id="tildastatscript";s.src=g;if(w.opera=="[object Opera]") {d.addEventListener("DOMContentLoaded",f,false);} else {f();}})(document,window,'3cc13bfd3e6a2add958cc45d1bb61a47','script','js/tilda-stat-1.0.min.js');},2000);</script> </body> </html>
