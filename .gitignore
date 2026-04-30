@@ -1,1 +1,24 @@
-Nothing should be ignored based on the provided file changes. The only modified file is 'fixed_index.html', which appears to be a source file that should not be ignored. There are no build artifacts, dependencies, or temporary files in the change list that require ignoring.
+# OS
+.DS_Store
+Thumbs.db
+
+# Editor
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Logs
+*.log
+npm-debug.log*
+
+# Dependencies
+node_modules/
+
+# Build
+build/
+dist/
+
+# Environment
+.env
+.env.local

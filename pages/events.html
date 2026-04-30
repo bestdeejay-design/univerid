@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Мероприятия — UniverID</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/main.css">
+  <style>
+    .page-header { padding: 120px 0 40px; background: rgba(255, 255, 255, 0.02); border-bottom: 1px solid rgba(255, 255, 255, 0.1); }
+    .events-container { padding: 40px 0; }
+    .event-card {
+      background: var(--bg-card);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: var(--radius-lg);
+      padding: 2rem;
+      margin-bottom: 1.5rem;
+      transition: var(--transition);
+      display: grid;
+      grid-template-columns: 100px 1fr auto;
+      gap: 2rem;
+      align-items: center;
+    }
+    .event-card:hover {
+      background: var(--bg-card-hover);
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-lg);
+      border-color: var(--primary);
+    }
+    .event-date {
+      background: var(--gradient-primary);
+      border-radius: var(--radius-md);
+      padding: 1rem;
+      text-align: center;
+    }
+    .event-day {
+      font-size: 2rem;
+      font-weight: 800;
+    }
+    .event-month {
+      font-size: 0.875rem;
+      text-transform: uppercase;
+    }
+    .event-title {
+      font-size: 1.25rem;
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+    }
+    .event-meta {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+      color: var(--text-muted);
+      font-size: 0.875rem;
+      margin: 0.5rem 0;
+    }
+    .event-footer {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      gap: 0.5rem;
+    }
+    .participants {
+      color: var(--text-muted);
+      font-size: 0.875rem;
+    }
+  </style>
+</head>
+<body>
+  <nav class="navbar">
+    <div class="container">
+      <a href="index.html" class="navbar-brand">🎓 UniverID</a>
+      <ul class="navbar-menu">
+        <li><a href="dashboard.html">Дашборд</a></li>
+        <li><a href="schedule.html">Расписание</a></li>
+        <li><a href="career.html">Карьера</a></li>
+        <li><a href="benefits.html">Льготы</a></li>
+        <li><a href="events.html">Мероприятия</a></li>
+        <li><a href="assistant.html">AI-ассистент</a></li>
+      </ul>
+      <a href="../index.html" class="btn btn-secondary btn-sm">Выйти</a>
+    </div>
+  </nav>
+
+  <div class="page-header">
+    <div class="container">
+      <h1>🎯 Мероприятия</h1>
+      <p style="color: var(--text-secondary);">Афиша событий и мероприятий</p>
+    </div>
+  </div>
+
+  <div class="events-container">
+    <div class="container">
+      <div id="eventsList">
+        <!-- Events will be loaded here -->
+      </div>
+    </div>
+  </div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="../demo-data/data.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const eventsList = document.getElementById('eventsList');
+      const events = DEMO_DATA.events;
+
+      events.forEach(event => {
+        const card = document.createElement('div');
+        card.className = 'event-card';
+        
+        const date = new Date(event.date);
+        const day = date.getDate();
+        const month = date.toLocaleDateString('ru-RU', { month: 'short' });
+        
+        card.innerHTML = `
+          <div class="event-date">
+            <div class="event-day">${day}</div>
+            <div class="event-month">${month}</div>
+          </div>
+          
+          <div>
+            <div class="event-title">${event.title}</div>
+            <div class="event-meta">
+              <span>🕐 ${event.time}</span>
+              <span>📍 ${event.location}</span>
+              <span>🏷️ ${event.category}</span>
+            </div>
+            <p style="color: var(--text-secondary); margin-top: 0.5rem;">${event.description}</p>
+            <p style="color: var(--text-muted); font-size: 0.875rem; margin-top: 0.5rem;">Организатор: ${event.organizer}</p>
+          </div>
+          
+          <div class="event-footer">
+            <div class="participants">👥 ${event.participants} участников</div>
+            <button class="btn btn-primary btn-sm" onclick="registerEvent(${event.id})">Регистрация →</button>
+          </div>
+        `;
+        
+        eventsList.appendChild(card);
+      });
+
+      gsap.from(".event-card", {
+        duration: 0.6,
+        y: 30,
+        opacity: 0,
+        stagger: 0.15,
+        ease: "power3.out"
+      });
+    });
+
+    function registerEvent(id) {
+      alert('✅ Регистрация успешна! QR-код для входа отправлен на email.');
+    }
+  </script>
+</body>
+</html>

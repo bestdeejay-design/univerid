@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Успеваемость — UniverID</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/main.css">
+  <style>
+    .page-header { padding: 120px 0 40px; background: rgba(255, 255, 255, 0.02); border-bottom: 1px solid rgba(255, 255, 255, 0.1); }
+    .grades-container { padding: 40px 0; }
+    .gpa-card {
+      background: linear-gradient(135deg, rgba(37, 99, 235, 0.2), rgba(14, 165, 233, 0.2));
+      border: 2px solid var(--primary);
+      border-radius: var(--radius-xl);
+      padding: 3rem;
+      text-align: center;
+      margin-bottom: 3rem;
+    }
+    .gpa-value {
+      font-size: 5rem;
+      font-weight: 800;
+      background: linear-gradient(135deg, #3B82F6, #06D6A0);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .gpa-label {
+      font-size: 1.25rem;
+      color: var(--text-secondary);
+      margin-top: 0.5rem;
+    }
+    .grades-table {
+      background: var(--bg-card);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+    }
+    .grade-row {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr 1fr;
+      padding: 1.5rem;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+      align-items: center;
+      transition: var(--transition);
+    }
+    .grade-row:hover {
+      background: rgba(255, 255, 255, 0.02);
+    }
+    .grade-row.header {
+      background: rgba(37, 99, 235, 0.1);
+      font-weight: 600;
+    }
+    .grade-badge {
+      display: inline-block;
+      width: 40px;
+      height: 40px;
+      line-height: 40px;
+      text-align: center;
+      border-radius: 50%;
+      font-weight: 700;
+      font-size: 1.1rem;
+    }
+    .grade-5 { background: rgba(16, 185, 129, 0.2); color: #10B981; }
+    .grade-4 { background: rgba(59, 130, 246, 0.2); color: #3B82F6; }
+    .grade-3 { background: rgba(245, 158, 11, 0.2); color: #F59E0B; }
+  </style>
+</head>
+<body>
+  <nav class="navbar">
+    <div class="container">
+      <a href="index.html" class="navbar-brand">🎓 UniverID</a>
+      <ul class="navbar-menu">
+        <li><a href="dashboard.html">Дашборд</a></li>
+        <li><a href="schedule.html">Расписание</a></li>
+        <li><a href="career.html">Карьера</a></li>
+        <li><a href="benefits.html">Льготы</a></li>
+        <li><a href="events.html">Мероприятия</a></li>
+        <li><a href="assistant.html">AI-ассистент</a></li>
+      </ul>
+      <a href="../index.html" class="btn btn-secondary btn-sm">Выйти</a>
+    </div>
+  </nav>
+
+  <div class="page-header">
+    <div class="container">
+      <h1>📊 Успеваемость</h1>
+      <p style="color: var(--text-secondary);">Электронный журнал оценок</p>
+    </div>
+  </div>
+
+  <div class="grades-container">
+    <div class="container">
+      <div class="gpa-card">
+        <div class="gpa-value">4.7</div>
+        <div class="gpa-label">Средний балл</div>
+        <p style="margin-top: 1rem; color: var(--text-muted);">Отличный результат! Вы в ТОП-10% потока</p>
+      </div>
+
+      <div class="grades-table">
+        <div class="grade-row header">
+          <div>Предмет</div>
+          <div>Оценка</div>
+          <div>Тип</div>
+          <div>Преподаватель</div>
+        </div>
+        <div id="gradesList">
+          <!-- Grades will be loaded here -->
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="../demo-data/data.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const gradesList = document.getElementById('gradesList');
+      const grades = DEMO_DATA.grades;
+
+      grades.forEach((grade, index) => {
+        const row = document.createElement('div');
+        row.className = 'grade-row';
+        row.innerHTML = `
+          <div><strong>${grade.subject}</strong></div>
+          <div><span class="grade-badge grade-${grade.grade}">${grade.grade}</span></div>
+          <div>${grade.type}</div>
+          <div style="color: var(--text-muted); font-size: 0.875rem;">${grade.teacher}</div>
+        `;
+        gradesList.appendChild(row);
+      });
+
+      gsap.from(".gpa-card", {
+        duration: 0.8,
+        y: 30,
+        opacity: 0,
+        ease: "power3.out"
+      });
+
+      gsap.from(".grade-row", {
+        duration: 0.6,
+        y: 20,
+        opacity: 0,
+        stagger: 0.1,
+        delay: 0.3,
+        ease: "power3.out"
+      });
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Дашборд — UniverID</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/main.css">
+  <style>
+    .dashboard {
+      padding-top: 100px;
+      min-height: 100vh;
+    }
+    .dashboard-header {
+      background: rgba(255, 255, 255, 0.03);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+      padding: 2rem 0;
+      margin-bottom: 2rem;
+    }
+    .user-profile {
+      display: flex;
+      align-items: center;
+      gap: 1.5rem;
+      margin-bottom: 1.5rem;
+    }
+    .user-avatar {
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      background: var(--gradient-primary);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2.5rem;
+    }
+    .user-info h2 {
+      margin-bottom: 0.25rem;
+    }
+    .user-meta {
+      color: var(--text-muted);
+      font-size: 0.875rem;
+    }
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1rem;
+      margin-bottom: 2rem;
+    }
+    .stat-card {
+      background: var(--bg-card);
+      padding: 1.5rem;
+      border-radius: var(--radius-lg);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+    .stat-value {
+      font-size: 2rem;
+      font-weight: 800;
+      color: var(--primary-light);
+      margin-bottom: 0.25rem;
+    }
+    .stat-label {
+      color: var(--text-muted);
+      font-size: 0.875rem;
+    }
+    .modules-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.5rem;
+      margin-bottom: 2rem;
+    }
+    .module-card {
+      background: var(--bg-card);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: var(--radius-lg);
+      padding: 2rem;
+      cursor: pointer;
+      transition: var(--transition);
+      text-decoration: none;
+      color: inherit;
+      display: block;
+    }
+    .module-card:hover {
+      background: var(--bg-card-hover);
+      transform: translateY(-4px);
+      box-shadow: var(--shadow-lg);
+      border-color: var(--primary);
+    }
+    .module-icon {
+      font-size: 3rem;
+      margin-bottom: 1rem;
+    }
+    .module-title {
+      font-size: 1.25rem;
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+    }
+    .module-desc {
+      color: var(--text-secondary);
+      font-size: 0.9rem;
+      line-height: 1.5;
+    }
+    .notifications-panel {
+      background: var(--bg-card);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: var(--radius-lg);
+      padding: 1.5rem;
+      margin-bottom: 2rem;
+    }
+    .notification-item {
+      padding: 1rem;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+      display: flex;
+      gap: 1rem;
+      align-items: flex-start;
+    }
+    .notification-item:last-child {
+      border-bottom: none;
+    }
+    .notification-item.unread {
+      background: rgba(37, 99, 235, 0.1);
+      border-left: 3px solid var(--primary);
+    }
+    .notification-icon {
+      font-size: 1.5rem;
+      flex-shrink: 0;
+    }
+    .notification-content {
+      flex: 1;
+    }
+    .notification-message {
+      margin-bottom: 0.25rem;
+    }
+    .notification-time {
+      color: var(--text-muted);
+      font-size: 0.75rem;
+    }
+  </style>
+</head>
+<body>
+  
+  <!-- Navigation -->
+  <nav class="navbar">
+    <div class="container">
+      <a href="index.html" class="navbar-brand">🎓 UniverID</a>
+      <ul class="navbar-menu">
+        <li><a href="dashboard.html">Дашборд</a></li>
+        <li><a href="schedule.html">Расписание</a></li>
+        <li><a href="career.html">Карьера</a></li>
+        <li><a href="benefits.html">Льготы</a></li>
+        <li><a href="events.html">Мероприятия</a></li>
+        <li><a href="assistant.html">AI-ассистент</a></li>
+      </ul>
+      <a href="../index.html" class="btn btn-secondary btn-sm">Выйти</a>
+    </div>
+  </nav>
+
+  <div class="dashboard">
+    <div class="container">
+      
+      <!-- User Profile Section -->
+      <div class="dashboard-header">
+        <div class="user-profile">
+          <div class="user-avatar">👨‍💻</div>
+          <div class="user-info">
+            <h2 id="studentName">Александр Петров</h2>
+            <div class="user-meta">
+              <div>Студент • 3 курс • Группа ПИ-301</div>
+              <div>Факультет информационных технологий</div>
+              <div>Средний балл: <strong style="color: var(--accent);">4.7</strong></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Stats -->
+        <div class="stats-grid">
+          <div class="stat-card">
+            <div class="stat-value">4.7</div>
+            <div class="stat-label">Средний балл</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-value">12</div>
+            <div class="stat-label">Курсов завершено</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-value">5</div>
+            <div class="stat-label">Стажировок доступно</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-value">3</div>
+            <div class="stat-label">Мероприятия на этой неделе</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Notifications -->
+      <div class="notifications-panel">
+        <h3 style="margin-bottom: 1rem;">🔔 Уведомления</h3>
+        <div id="notificationsList">
+          <!-- Notifications will be loaded here -->
+        </div>
+      </div>
+
+      <!-- Modules Grid -->
+      <h3 style="margin-bottom: 1.5rem;">📚 Модули системы</h3>
+      <div class="modules-grid">
+        <a href="schedule.html" class="module-card">
+          <div class="module-icon">📅</div>
+          <div class="module-title">Расписание</div>
+          <div class="module-desc">Просмотр расписания, уведомления о парах, экспорт в календарь</div>
+        </a>
+
+        <a href="grades.html" class="module-card">
+          <div class="module-icon">📊</div>
+          <div class="module-title">Успеваемость</div>
+          <div class="module-desc">Электронный журнал, оценки, зачёты, аналитика прогресса</div>
+        </a>
+
+        <a href="career.html" class="module-card">
+          <div class="module-icon">💼</div>
+          <div class="module-title">Карьера</div>
+          <div class="module-desc">Вакансии, стажировки, практики, цифровое резюме</div>
+        </a>
+
+        <a href="resume.html" class="module-card">
+          <div class="module-icon">📄</div>
+          <div class="module-title">Моё резюме</div>
+          <div class="module-desc">Цифровое резюме, навыки, проекты, достижения</div>
+        </a>
+
+        <a href="benefits.html" class="module-card">
+          <div class="module-icon">🎟️</div>
+          <div class="module-title">Льготы</div>
+          <div class="module-desc">Студенческая карта, скидки, бонусы, партнёрские программы</div>
+        </a>
+
+        <a href="events.html" class="module-card">
+          <div class="module-icon">🎯</div>
+          <div class="module-title">Мероприятия</div>
+          <div class="module-desc">Афиша событий, регистрация, QR-чекин, отзывы</div>
+        </a>
+
+        <a href="assistant.html" class="module-card">
+          <div class="module-icon">🤖</div>
+          <div class="module-title">AI-ассистент</div>
+          <div class="module-desc">Умный помощник для ответов на вопросы и рекомендаций</div>
+        </a>
+
+        <a href="#" class="module-card">
+          <div class="module-icon">📚</div>
+          <div class="module-title">Библиотека</div>
+          <div class="module-desc">Электронные ресурсы, методички, учебники, статьи</div>
+        </a>
+      </div>
+
+    </div>
+  </div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="../demo-data/data.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      // Load notifications
+      const notificationsList = document.getElementById('notificationsList');
+      const notifications = DEMO_DATA.notifications;
+      
+      notifications.forEach(notif => {
+        const notifElement = document.createElement('div');
+        notifElement.className = `notification-item ${notif.read ? '' : 'unread'}`;
+        
+        const icons = {
+          schedule: '📅',
+          grade: '📊',
+          event: '🎯',
+          vacancy: '💼',
+          system: 'ℹ️'
+        };
+        
+        notifElement.innerHTML = `
+          <div class="notification-icon">${icons[notif.type] || 'ℹ️'}</div>
+          <div class="notification-content">
+            <div class="notification-message">${notif.message}</div>
+            <div class="notification-time">${notif.time}</div>
+          </div>
+        `;
+        
+        notificationsList.appendChild(notifElement);
+      });
+
+      // Animate cards
+      gsap.from(".module-card", {
+        duration: 0.6,
+        y: 30,
+        opacity: 0,
+        stagger: 0.1,
+        ease: "power3.out"
+      });
+
+      gsap.from(".stat-card", {
+        duration: 0.6,
+        y: 20,
+        opacity: 0,
+        stagger: 0.1,
+        delay: 0.3,
+        ease: "power3.out"
+      });
+    });
+  </script>
+</body>
+</html>

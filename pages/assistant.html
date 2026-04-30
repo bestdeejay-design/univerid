@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AI-ассистент — UniverID</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/main.css">
+  <style>
+    .page-header { padding: 120px 0 40px; background: rgba(255, 255, 255, 0.02); border-bottom: 1px solid rgba(255, 255, 255, 0.1); }
+    .chat-container {
+      padding: 40px 0;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+    .chat-window {
+      background: var(--bg-card);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: var(--radius-xl);
+      height: 600px;
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+    }
+    .chat-header {
+      background: linear-gradient(135deg, rgba(37, 99, 235, 0.2), rgba(14, 165, 233, 0.2));
+      padding: 1.5rem;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+    .chat-messages {
+      flex: 1;
+      overflow-y: auto;
+      padding: 1.5rem;
+    }
+    .message {
+      margin-bottom: 1.5rem;
+      display: flex;
+      gap: 1rem;
+    }
+    .message.user {
+      flex-direction: row-reverse;
+    }
+    .message-avatar {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.5rem;
+      flex-shrink: 0;
+    }
+    .message.bot .message-avatar {
+      background: var(--gradient-primary);
+    }
+    .message.user .message-avatar {
+      background: rgba(6, 214, 160, 0.2);
+    }
+    .message-content {
+      max-width: 70%;
+      padding: 1rem 1.5rem;
+      border-radius: var(--radius-lg);
+      line-height: 1.6;
+    }
+    .message.bot .message-content {
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+    .message.user .message-content {
+      background: rgba(37, 99, 235, 0.2);
+      border: 1px solid rgba(37, 99, 235, 0.3);
+    }
+    .chat-input {
+      padding: 1.5rem;
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+      display: flex;
+      gap: 1rem;
+    }
+    .chat-input input {
+      flex: 1;
+      padding: 1rem;
+      border: 2px solid rgba(255, 255, 255, 0.1);
+      border-radius: var(--radius-md);
+      background: rgba(255, 255, 255, 0.03);
+      color: white;
+      font-size: 1rem;
+    }
+    .chat-input input:focus {
+      outline: none;
+      border-color: var(--primary);
+    }
+    .quick-actions {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1rem;
+      margin-bottom: 2rem;
+    }
+    .quick-btn {
+      background: var(--bg-card);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: var(--radius-md);
+      padding: 1rem;
+      cursor: pointer;
+      transition: var(--transition);
+      text-align: left;
+      color: white;
+    }
+    .quick-btn:hover {
+      background: var(--bg-card-hover);
+      border-color: var(--primary);
+      transform: translateY(-2px);
+    }
+  </style>
+</head>
+<body>
+  <nav class="navbar">
+    <div class="container">
+      <a href="index.html" class="navbar-brand">🎓 UniverID</a>
+      <ul class="navbar-menu">
+        <li><a href="dashboard.html">Дашборд</a></li>
+        <li><a href="schedule.html">Расписание</a></li>
+        <li><a href="career.html">Карьера</a></li>
+        <li><a href="benefits.html">Льготы</a></li>
+        <li><a href="events.html">Мероприятия</a></li>
+        <li><a href="assistant.html">AI-ассистент</a></li>
+      </ul>
+      <a href="../index.html" class="btn btn-secondary btn-sm">Выйти</a>
+    </div>
+  </nav>
+
+  <div class="page-header">
+    <div class="container">
+      <h1>🤖 AI-ассистент</h1>
+      <p style="color: var(--text-secondary);">Ваш умный помощник</p>
+    </div>
+  </div>
+
+  <div class="chat-container">
+    <div class="container">
+      <div class="quick-actions">
+        <button class="quick-btn" onclick="askQuestion('расписание')">📅 Моё расписание</button>
+        <button class="quick-btn" onclick="askQuestion('оценки')">📊 Мои оценки</button>
+        <button class="quick-btn" onclick="askQuestion('льготы')">🎟️ Доступные льготы</button>
+        <button class="quick-btn" onclick="askQuestion('вакансии')">💼 Вакансии для меня</button>
+        <button class="quick-btn" onclick="askQuestion('мероприятия')">🎯 Ближайшие мероприятия</button>
+      </div>
+
+      <div class="chat-window">
+        <div class="chat-header">
+          <div style="font-size: 2rem;">🤖</div>
+          <div>
+            <div style="font-weight: 600;">UniverID Assistant</div>
+            <div style="font-size: 0.875rem; color: var(--text-muted);">Онлайн • Готов помочь</div>
+          </div>
+        </div>
+
+        <div class="chat-messages" id="chatMessages">
+          <div class="message bot">
+            <div class="message-avatar">🤖</div>
+            <div class="message-content">
+              Привет! 👋 Я ваш AI-ассистент. Могу помочь с:<br><br>
+              • 📅 Расписанием<br>
+              • 📊 Успеваемостью<br>
+              • 💼 Вакансиями<br>
+              • 🎟️ Льготами<br>
+              • 🎯 Мероприятиями<br><br>
+              Что вас интересует?
+            </div>
+          </div>
+        </div>
+
+        <div class="chat-input">
+          <input type="text" id="userInput" placeholder="Напишите сообщение..." onkeypress="handleKeyPress(event)">
+          <button class="btn btn-primary" onclick="sendMessage()">➤</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="../demo-data/data.js"></script>
+  <script>
+    function sendMessage() {
+      const input = document.getElementById('userInput');
+      const message = input.value.trim();
+      
+      if (message) {
+        addMessage(message, 'user');
+        input.value = '';
+        
+        setTimeout(() => {
+          const response = getAIResponse(message);
+          addMessage(response, 'bot');
+        }, 500);
+      }
+    }
+
+    function askQuestion(topic) {
+      addMessage(getQuestionText(topic), 'user');
+      
+      setTimeout(() => {
+        const response = DEMO_DATA.aiAssistant.responses[topic] || DEMO_DATA.aiAssistant.responses['default'];
+        addMessage(response, 'bot');
+      }, 500);
+    }
+
+    function getQuestionText(topic) {
+      const questions = {
+        'расписание': 'Какое у меня расписание?',
+        'оценки': 'Какие у меня оценки?',
+        'льготы': 'Какие льготы мне доступны?',
+        'вакансии': 'Какие вакансии есть для меня?',
+        'мероприятия': 'Какие мероприятия предстоят?'
+      };
+      return questions[topic] || topic;
+    }
+
+    function getAIResponse(message) {
+      const lowerMessage = message.toLowerCase();
+      const responses = DEMO_DATA.aiAssistant.responses;
+      
+      if (lowerMessage.includes('распис')) return responses['расписание'];
+      if (lowerMessage.includes('оценк') || lowerMessage.includes('успеш')) return responses['оценки'];
+      if (lowerMessage.includes('льгот') || lowerMessage.includes('скидк')) return responses['льготы'];
+      if (lowerMessage.includes('ваканс') || lowerMessage.includes('работ')) return responses['вакансии'];
+      if (lowerMessage.includes('мероприят') || lowerMessage.includes('событ')) return responses['мероприятия'];
+      
+      return responses['default'];
+    }
+
+    function addMessage(text, sender) {
+      const chatMessages = document.getElementById('chatMessages');
+      const messageDiv = document.createElement('div');
+      messageDiv.className = `message ${sender}`;
+      
+      messageDiv.innerHTML = `
+        <div class="message-avatar">${sender === 'bot' ? '🤖' : '👨‍💻'}</div>
+        <div class="message-content">${text.replace(/\n/g, '<br>')}</div>
+      `;
+      
+      chatMessages.appendChild(messageDiv);
+      chatMessages.scrollTop = chatMessages.scrollHeight;
+    }
+
+    function handleKeyPress(event) {
+      if (event.key === 'Enter') {
+        sendMessage();
+      }
+    }
+
+    gsap.from(".chat-window", {
+      duration: 0.8,
+      y: 30,
+      opacity: 0,
+      ease: "power3.out"
+    });
+
+    gsap.from(".quick-btn", {
+      duration: 0.6,
+      y: 20,
+      opacity: 0,
+      stagger: 0.1,
+      delay: 0.3,
+      ease: "power3.out"
+    });
+  </script>
+</body>
+</html>

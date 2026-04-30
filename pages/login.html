@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Вход — UniverID</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/main.css">
+  <style>
+    .login-page {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 2rem;
+      background: var(--bg-dark);
+    }
+    .login-card {
+      background: rgba(255, 255, 255, 0.05);
+      backdrop-filter: blur(20px);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: var(--radius-xl);
+      padding: 3rem;
+      max-width: 500px;
+      width: 100%;
+    }
+    .login-header {
+      text-align: center;
+      margin-bottom: 2rem;
+    }
+    .login-header h1 {
+      font-size: 2.5rem;
+      margin-bottom: 0.5rem;
+    }
+    .login-header p {
+      color: var(--text-muted);
+    }
+    .login-button {
+      width: 100%;
+      margin-bottom: 1rem;
+      padding: 16px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.75rem;
+      font-size: 1rem;
+      border-radius: var(--radius-md);
+      border: 2px solid rgba(255, 255, 255, 0.2);
+      background: rgba(255, 255, 255, 0.05);
+      color: white;
+      cursor: pointer;
+      transition: var(--transition);
+    }
+    .login-button:hover {
+      background: rgba(255, 255, 255, 0.1);
+      border-color: rgba(255, 255, 255, 0.4);
+      transform: translateY(-2px);
+    }
+    .login-button.primary {
+      background: var(--gradient-primary);
+      border: none;
+    }
+    .divider {
+      display: flex;
+      align-items: center;
+      margin: 2rem 0;
+      color: var(--text-muted);
+    }
+    .divider::before,
+    .divider::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: rgba(255, 255, 255, 0.1);
+    }
+    .divider span {
+      padding: 0 1rem;
+    }
+    .demo-notice {
+      background: rgba(6, 214, 160, 0.1);
+      border: 1px solid var(--accent);
+      border-radius: var(--radius-md);
+      padding: 1rem;
+      margin-top: 1.5rem;
+      text-align: center;
+      color: var(--accent);
+    }
+  </style>
+</head>
+<body>
+  <div class="login-page">
+    <div class="login-card">
+      <div class="login-header">
+        <div style="font-size: 4rem; margin-bottom: 1rem;">🎓</div>
+        <h1>Вход в систему</h1>
+        <p>Технологический институт</p>
+      </div>
+
+      <button class="login-button primary" onclick="loginDemo()">
+        <span style="font-size: 1.5rem;">🚀</span>
+        <span>Войти как студент (демо)</span>
+      </button>
+
+      <div class="divider"><span>или</span></div>
+
+      <button class="login-button">
+        <span style="font-size: 1.5rem;">🔐</span>
+        <span>Войти через Госуслуги</span>
+      </button>
+
+      <button class="login-button">
+        <span style="font-size: 1.5rem;">🏫</span>
+        <span>Войти через ЛК студента</span>
+      </button>
+
+      <button class="login-button">
+        <span style="font-size: 1.5rem;">📧</span>
+        <span>Войти через корпоративную почту</span>
+      </button>
+
+      <div class="demo-notice">
+        <strong>Демо-режим</strong><br>
+        Нажмите "Войти как студент" для доступа к демо-версии
+      </div>
+
+      <div style="text-align: center; margin-top: 2rem;">
+        <a href="../index.html" style="color: var(--text-muted);">← Вернуться на главную</a>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    function loginDemo() {
+      // Set demo session
+      sessionStorage.setItem('univerid_demo', 'true');
+      sessionStorage.setItem('univerid_user', JSON.stringify({
+        name: 'Александр Петров',
+        role: 'student',
+        course: 3,
+        faculty: 'Информационные технологии'
+      }));
+      
+      // Redirect to dashboard
+      window.location.href = 'dashboard.html';
+    }
+  </script>
+</body>
+</html>

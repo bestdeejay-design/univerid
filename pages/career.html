@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Карьера — UniverID</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/main.css">
+  <style>
+    .page-header { padding: 120px 0 40px; background: rgba(255, 255, 255, 0.02); border-bottom: 1px solid rgba(255, 255, 255, 0.1); }
+    .career-container { padding: 40px 0; }
+    .vacancy-card {
+      background: var(--bg-card);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: var(--radius-lg);
+      padding: 2rem;
+      margin-bottom: 1.5rem;
+      transition: var(--transition);
+    }
+    .vacancy-card:hover {
+      background: var(--bg-card-hover);
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-lg);
+      border-color: var(--primary);
+    }
+    .vacancy-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: 1rem;
+    }
+    .company-info {
+      display: flex;
+      gap: 1rem;
+      align-items: center;
+    }
+    .company-logo {
+      width: 60px;
+      height: 60px;
+      background: rgba(37, 99, 235, 0.1);
+      border-radius: var(--radius-md);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2rem;
+    }
+    .vacancy-title {
+      font-size: 1.25rem;
+      font-weight: 600;
+      margin-bottom: 0.25rem;
+    }
+    .company-name {
+      color: var(--text-muted);
+    }
+    .vacancy-meta {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+      margin: 1rem 0;
+    }
+    .meta-item {
+      background: rgba(255, 255, 255, 0.05);
+      padding: 0.5rem 1rem;
+      border-radius: var(--radius-sm);
+      font-size: 0.875rem;
+      color: var(--text-secondary);
+    }
+    .skills-list {
+      display: flex;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+      margin: 1rem 0;
+    }
+    .skill-tag {
+      background: rgba(37, 99, 235, 0.2);
+      color: var(--primary-light);
+      padding: 0.25rem 0.75rem;
+      border-radius: 9999px;
+      font-size: 0.75rem;
+      font-weight: 600;
+    }
+    .vacancy-footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: 1.5rem;
+      padding-top: 1rem;
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+    }
+    .deadline {
+      color: var(--text-muted);
+      font-size: 0.875rem;
+    }
+  </style>
+</head>
+<body>
+  <nav class="navbar">
+    <div class="container">
+      <a href="index.html" class="navbar-brand">🎓 UniverID</a>
+      <ul class="navbar-menu">
+        <li><a href="dashboard.html">Дашборд</a></li>
+        <li><a href="schedule.html">Расписание</a></li>
+        <li><a href="career.html">Карьера</a></li>
+        <li><a href="benefits.html">Льготы</a></li>
+        <li><a href="events.html">Мероприятия</a></li>
+        <li><a href="assistant.html">AI-ассистент</a></li>
+      </ul>
+      <a href="../index.html" class="btn btn-secondary btn-sm">Выйти</a>
+    </div>
+  </nav>
+
+  <div class="page-header">
+    <div class="container">
+      <h1>💼 Карьера и стажировки</h1>
+      <p style="color: var(--text-secondary);">Вакансии от ведущих IT-компаний</p>
+    </div>
+  </div>
+
+  <div class="career-container">
+    <div class="container">
+      <div style="margin-bottom: 2rem;">
+        <a href="resume.html" class="btn btn-primary">📄 Моё резюме</a>
+      </div>
+      
+      <div id="vacanciesList">
+        <!-- Vacancies will be loaded here -->
+      </div>
+    </div>
+  </div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="../demo-data/data.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const vacanciesList = document.getElementById('vacanciesList');
+      const vacancies = DEMO_DATA.vacancies;
+
+      vacancies.forEach(vacancy => {
+        const card = document.createElement('div');
+        card.className = 'vacancy-card';
+        
+        const skillsHTML = vacancy.skills.map(skill => 
+          `<span class="skill-tag">${skill}</span>`
+        ).join('');
+        
+        card.innerHTML = `
+          <div class="vacancy-header">
+            <div class="company-info">
+              <div class="company-logo">${vacancy.logo}</div>
+              <div>
+                <div class="vacancy-title">${vacancy.position}</div>
+                <div class="company-name">${vacancy.company}</div>
+              </div>
+            </div>
+            <span class="badge ${vacancy.type === 'Стажировка' ? 'badge-primary' : 'badge-success'}">${vacancy.type}</span>
+          </div>
+          
+          <p style="color: var(--text-secondary); margin: 1rem 0;">${vacancy.description}</p>
+          
+          <div class="vacancy-meta">
+            <span class="meta-item">💰 ${vacancy.salary}</span>
+            <span class="meta-item">📍 ${vacancy.format}</span>
+            <span class="meta-item">⏱ ${vacancy.duration}</span>
+          </div>
+          
+          <div class="skills-list">
+            ${skillsHTML}
+          </div>
+          
+          <div class="vacancy-footer">
+            <div class="deadline">⏰ Дедлайн: ${new Date(vacancy.deadline).toLocaleDateString('ru-RU')}</div>
+            <button class="btn btn-primary btn-sm" onclick="applyVacancy(${vacancy.id})">Откликнуться →</button>
+          </div>
+        `;
+        
+        vacanciesList.appendChild(card);
+      });
+
+      gsap.from(".vacancy-card", {
+        duration: 0.6,
+        y: 30,
+        opacity: 0,
+        stagger: 0.15,
+        ease: "power3.out"
+      });
+    });
+
+    function applyVacancy(id) {
+      alert('✅ Отклик отправлен! Работодатель получит ваше резюме.');
+    }
+  </script>
+</body>
+</html>

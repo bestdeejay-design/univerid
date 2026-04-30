@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Льготы — UniverID</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/main.css">
+  <style>
+    .page-header { padding: 120px 0 40px; background: rgba(255, 255, 255, 0.02); border-bottom: 1px solid rgba(255, 255, 255, 0.1); }
+    .benefits-container { padding: 40px 0; }
+    .student-card {
+      background: linear-gradient(135deg, rgba(37, 99, 235, 0.3), rgba(14, 165, 233, 0.3));
+      border: 2px solid var(--primary);
+      border-radius: var(--radius-xl);
+      padding: 3rem;
+      text-align: center;
+      margin-bottom: 3rem;
+    }
+    .card-visual {
+      width: 400px;
+      max-width: 100%;
+      height: 250px;
+      background: linear-gradient(135deg, #2563EB, #0EA5E9);
+      border-radius: var(--radius-xl);
+      margin: 2rem auto;
+      padding: 2rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      box-shadow: 0 20px 60px rgba(37, 99, 235, 0.4);
+    }
+    .card-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+    }
+    .card-number {
+      font-size: 1.5rem;
+      font-weight: 600;
+      letter-spacing: 2px;
+      margin: 2rem 0;
+    }
+    .card-footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+    }
+    .category-card {
+      background: var(--bg-card);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: var(--radius-lg);
+      padding: 2rem;
+      margin-bottom: 2rem;
+    }
+    .benefit-item {
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid rgba(255, 255, 255, 0.05);
+      border-radius: var(--radius-md);
+      padding: 1.5rem;
+      margin-bottom: 1rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      transition: var(--transition);
+    }
+    .benefit-item:hover {
+      background: rgba(255, 255, 255, 0.06);
+      transform: translateX(4px);
+    }
+    .discount-badge {
+      background: var(--accent);
+      color: white;
+      padding: 0.5rem 1rem;
+      border-radius: var(--radius-sm);
+      font-weight: 700;
+      font-size: 0.875rem;
+    }
+  </style>
+</head>
+<body>
+  <nav class="navbar">
+    <div class="container">
+      <a href="index.html" class="navbar-brand">🎓 UniverID</a>
+      <ul class="navbar-menu">
+        <li><a href="dashboard.html">Дашборд</a></li>
+        <li><a href="schedule.html">Расписание</a></li>
+        <li><a href="career.html">Карьера</a></li>
+        <li><a href="benefits.html">Льготы</a></li>
+        <li><a href="events.html">Мероприятия</a></li>
+        <li><a href="assistant.html">AI-ассистент</a></li>
+      </ul>
+      <a href="../index.html" class="btn btn-secondary btn-sm">Выйти</a>
+    </div>
+  </nav>
+
+  <div class="page-header">
+    <div class="container">
+      <h1>🎟️ Льготы и скидки</h1>
+      <p style="color: var(--text-secondary);">Ваша цифровая студенческая карта</p>
+    </div>
+  </div>
+
+  <div class="benefits-container">
+    <div class="container">
+      <div class="student-card">
+        <h2>Цифровая студенческая карта</h2>
+        <div class="card-visual">
+          <div class="card-header">
+            <div style="font-size: 1.5rem; font-weight: 700;">🎓 UniverID</div>
+            <div style="font-size: 2rem;">👨‍💻</div>
+          </div>
+          <div class="card-number">STU-2024-001</div>
+          <div class="card-footer">
+            <div>
+              <div style="font-size: 0.75rem; opacity: 0.8;">Студент</div>
+              <div style="font-weight: 600;">Александр Петров</div>
+            </div>
+            <div style="text-align: right;">
+              <div style="font-size: 0.75rem; opacity: 0.8;">Действует до</div>
+              <div style="font-weight: 600;">09/2026</div>
+            </div>
+          </div>
+        </div>
+        <p style="color: var(--text-muted);">Покажите QR-код партнёрам для получения скидок</p>
+      </div>
+
+      <div id="benefitsList">
+        <!-- Benefits will be loaded here -->
+      </div>
+    </div>
+  </div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="../demo-data/data.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const benefitsList = document.getElementById('benefitsList');
+      const benefits = DEMO_DATA.benefits;
+
+      benefits.forEach(category => {
+        const categoryCard = document.createElement('div');
+        categoryCard.className = 'category-card';
+        
+        const itemsHTML = category.items.map(item => `
+          <div class="benefit-item">
+            <div>
+              <h4 style="margin-bottom: 0.25rem;">${item.name}</h4>
+              <p style="color: var(--text-muted); font-size: 0.875rem; margin: 0;">${item.description}</p>
+            </div>
+            <div class="discount-badge">${item.discount}</div>
+          </div>
+        `).join('');
+        
+        categoryCard.innerHTML = `
+          <h3 style="margin-bottom: 1.5rem;">${category.icon} ${category.category}</h3>
+          ${itemsHTML}
+        `;
+        
+        benefitsList.appendChild(categoryCard);
+      });
+
+      gsap.from(".student-card", {
+        duration: 0.8,
+        y: 30,
+        opacity: 0,
+        ease: "power3.out"
+      });
+
+      gsap.from(".category-card", {
+        duration: 0.6,
+        y: 30,
+        opacity: 0,
+        stagger: 0.15,
+        delay: 0.3,
+        ease: "power3.out"
+      });
+    });
+  </script>
+</body>
+</html>

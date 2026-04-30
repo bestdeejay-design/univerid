@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Моё резюме — UniverID</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/main.css">
+  <style>
+    .page-header { padding: 120px 0 40px; background: rgba(255, 255, 255, 0.02); border-bottom: 1px solid rgba(255, 255, 255, 0.1); }
+    .resume-container { padding: 40px 0; }
+    .resume-card {
+      background: var(--bg-card);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: var(--radius-xl);
+      padding: 3rem;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+    .resume-header {
+      display: flex;
+      gap: 2rem;
+      margin-bottom: 3rem;
+      padding-bottom: 2rem;
+      border-bottom: 2px solid rgba(255, 255, 255, 0.1);
+    }
+    .resume-avatar {
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      background: var(--gradient-primary);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 4rem;
+      flex-shrink: 0;
+    }
+    .section {
+      margin-bottom: 2.5rem;
+    }
+    .section-title {
+      font-size: 1.5rem;
+      font-weight: 700;
+      margin-bottom: 1rem;
+      color: var(--primary-light);
+    }
+    .skill-item {
+      background: rgba(37, 99, 235, 0.1);
+      padding: 0.75rem 1.5rem;
+      border-radius: var(--radius-md);
+      margin-bottom: 0.5rem;
+      display: inline-block;
+    }
+    .project-card {
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: var(--radius-lg);
+      padding: 1.5rem;
+      margin-bottom: 1rem;
+    }
+    .badge-list {
+      display: flex;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+    }
+    .action-buttons {
+      display: flex;
+      gap: 1rem;
+      margin-top: 2rem;
+    }
+  </style>
+</head>
+<body>
+  <nav class="navbar">
+    <div class="container">
+      <a href="index.html" class="navbar-brand">🎓 UniverID</a>
+      <ul class="navbar-menu">
+        <li><a href="dashboard.html">Дашборд</a></li>
+        <li><a href="schedule.html">Расписание</a></li>
+        <li><a href="career.html">Карьера</a></li>
+        <li><a href="benefits.html">Льготы</a></li>
+        <li><a href="events.html">Мероприятия</a></li>
+        <li><a href="assistant.html">AI-ассистент</a></li>
+      </ul>
+      <a href="../index.html" class="btn btn-secondary btn-sm">Выйти</a>
+    </div>
+  </nav>
+
+  <div class="page-header">
+    <div class="container">
+      <h1>📄 Моё резюме</h1>
+      <p style="color: var(--text-secondary);">Цифровое резюме студента</p>
+    </div>
+  </div>
+
+  <div class="resume-container">
+    <div class="container">
+      <div class="resume-card">
+        <div class="resume-header">
+          <div class="resume-avatar">👨‍💻</div>
+          <div>
+            <h2>Александр Петров</h2>
+            <p style="color: var(--text-muted); margin-bottom: 0.5rem;">Студент 3 курса • Информационные технологии</p>
+            <p style="color: var(--text-secondary);">📧 a.petrov@techinst.ru • 📱 +7 (999) 123-45-67</p>
+            <p style="color: var(--text-secondary);">🎓 Технологический институт • GPA: 4.7</p>
+          </div>
+        </div>
+
+        <div class="section">
+          <h3 class="section-title">🎯 О себе</h3>
+          <p style="color: var(--text-secondary); line-height: 1.8;">
+            Стремлюсь стать Full-Stack разработчиком. Имею опыт разработки веб-приложений на React и Node.js. 
+            Участвовал в 3 хакатонах, занял 2 призовых места. Активно изучаю машинное обучение и AI.
+          </p>
+        </div>
+
+        <div class="section">
+          <h3 class="section-title">💻 Навыки</h3>
+          <div class="badge-list">
+            <span class="skill-item">JavaScript</span>
+            <span class="skill-item">TypeScript</span>
+            <span class="skill-item">React</span>
+            <span class="skill-item">Node.js</span>
+            <span class="skill-item">Python</span>
+            <span class="skill-item">PostgreSQL</span>
+            <span class="skill-item">Git</span>
+            <span class="skill-item">Docker</span>
+            <span class="skill-item">Figma</span>
+          </div>
+        </div>
+
+        <div class="section">
+          <h3 class="section-title">🚀 Проекты</h3>
+          <div class="project-card">
+            <h4>Платформа для онлайн-обучения</h4>
+            <p style="color: var(--text-muted); margin: 0.5rem 0;">React, Node.js, MongoDB</p>
+            <p style="color: var(--text-secondary);">Разработал полноценную LMS с видеоуроками, тестами и системой прогресса</p>
+          </div>
+          <div class="project-card">
+            <h4>Telegram-бот для расписания</h4>
+            <p style="color: var(--text-muted); margin: 0.5rem 0;">Python, aiogram, PostgreSQL</p>
+            <p style="color: var(--text-secondary);">Бот с 500+ пользователями, автоматические уведомления о парах</p>
+          </div>
+        </div>
+
+        <div class="section">
+          <h3 class="section-title">🏆 Достижения</h3>
+          <div class="badge-list">
+            <span class="badge badge-primary">🥇 Хакатон AI Challenge 2025 - 1 место</span>
+            <span class="badge badge-success">🎓 GPA 4.7</span>
+            <span class="badge badge-warning">⭐ ТОП-10% потока</span>
+            <span class="badge badge-primary">💼 Прошёл стажировку в Яндексе</span>
+          </div>
+        </div>
+
+        <div class="action-buttons">
+          <button class="btn btn-primary" onclick="downloadResume()">📥 Скачать PDF</button>
+          <button class="btn btn-secondary" onclick="shareResume()">🔗 Поделиться</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      gsap.from(".resume-card", {
+        duration: 0.8,
+        y: 30,
+        opacity: 0,
+        ease: "power3.out"
+      });
+    });
+
+    function downloadResume() {
+      alert('📥 Загрузка PDF резюме...');
+    }
+
+    function shareResume() {
+      alert('🔗 Ссылка на резюме скопирована в буфер обмена!');
+    }
+  </script>
+</body>
+</html>

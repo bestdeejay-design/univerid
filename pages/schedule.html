@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Расписание — UniverID</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/main.css">
+  <style>
+    .page-header {
+      padding: 120px 0 40px;
+      background: rgba(255, 255, 255, 0.02);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    }
+    .schedule-container {
+      padding: 40px 0;
+    }
+    .day-card {
+      background: var(--bg-card);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: var(--radius-lg);
+      margin-bottom: 2rem;
+      overflow: hidden;
+    }
+    .day-header {
+      background: rgba(37, 99, 235, 0.1);
+      padding: 1.5rem;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    }
+    .day-title {
+      font-size: 1.5rem;
+      font-weight: 700;
+      margin-bottom: 0.25rem;
+    }
+    .day-date {
+      color: var(--text-muted);
+      font-size: 0.875rem;
+    }
+    .lesson-item {
+      padding: 1.5rem;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+      display: grid;
+      grid-template-columns: 120px 1fr auto;
+      gap: 1.5rem;
+      align-items: center;
+      transition: var(--transition);
+    }
+    .lesson-item:last-child {
+      border-bottom: none;
+    }
+    .lesson-item:hover {
+      background: rgba(255, 255, 255, 0.02);
+    }
+    .lesson-time {
+      font-weight: 600;
+      color: var(--primary-light);
+    }
+    .lesson-info h4 {
+      margin-bottom: 0.5rem;
+    }
+    .lesson-meta {
+      display: flex;
+      gap: 1rem;
+      color: var(--text-muted);
+      font-size: 0.875rem;
+    }
+    .lesson-type {
+      padding: 4px 12px;
+      border-radius: 9999px;
+      font-size: 0.75rem;
+      font-weight: 600;
+    }
+    .type-lecture { background: rgba(59, 130, 246, 0.2); color: var(--primary-light); }
+    .type-practice { background: rgba(16, 185, 129, 0.2); color: var(--success); }
+    .type-lab { background: rgba(245, 158, 11, 0.2); color: var(--warning); }
+    .type-seminar { background: rgba(139, 92, 246, 0.2); color: #8B5CF6; }
+  </style>
+</head>
+<body>
+  
+  <nav class="navbar">
+    <div class="container">
+      <a href="index.html" class="navbar-brand">🎓 UniverID</a>
+      <ul class="navbar-menu">
+        <li><a href="dashboard.html">Дашборд</a></li>
+        <li><a href="schedule.html">Расписание</a></li>
+        <li><a href="career.html">Карьера</a></li>
+        <li><a href="benefits.html">Льготы</a></li>
+        <li><a href="events.html">Мероприятия</a></li>
+        <li><a href="assistant.html">AI-ассистент</a></li>
+      </ul>
+      <a href="../index.html" class="btn btn-secondary btn-sm">Выйти</a>
+    </div>
+  </nav>
+
+  <div class="page-header">
+    <div class="container">
+      <h1>📅 Расписание</h1>
+      <p style="color: var(--text-secondary);">Расписание на текущую неделю</p>
+    </div>
+  </div>
+
+  <div class="schedule-container">
+    <div class="container">
+      <div id="scheduleList">
+        <!-- Schedule will be loaded here -->
+      </div>
+    </div>
+  </div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="../demo-data/data.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const scheduleList = document.getElementById('scheduleList');
+      const schedule = DEMO_DATA.schedule;
+
+      schedule.forEach((day, index) => {
+        const dayCard = document.createElement('div');
+        dayCard.className = 'day-card';
+        
+        const lessonsHTML = day.lessons.map(lesson => {
+          const typeClass = lesson.type.toLowerCase();
+          const typeMap = {
+            'лекция': 'lecture',
+            'практика': 'practice',
+            'лабораторная': 'lab',
+            'семинар': 'seminar'
+          };
+          
+          return `
+            <div class="lesson-item">
+              <div class="lesson-time">${lesson.time}</div>
+              <div class="lesson-info">
+                <h4>${lesson.name}</h4>
+                <div class="lesson-meta">
+                  <span>👤 ${lesson.teacher}</span>
+                  <span>📍 ${lesson.room}</span>
+                </div>
+              </div>
+              <div class="lesson-type type-${typeMap[lesson.type.toLowerCase()] || 'lecture'}">${lesson.type}</div>
+            </div>
+          `;
+        }).join('');
+        
+        dayCard.innerHTML = `
+          <div class="day-header">
+            <div class="day-title">${day.day}</div>
+            <div class="day-date">${new Date(day.date).toLocaleDateString('ru-RU', { day: 'numeric', month: 'long' })}</div>
+          </div>
+          ${lessonsHTML}
+        `;
+        
+        scheduleList.appendChild(dayCard);
+      });
+
+      // Animate
+      gsap.from(".day-card", {
+        duration: 0.6,
+        y: 30,
+        opacity: 0,
+        stagger: 0.15,
+        ease: "power3.out"
+      });
+    });
+  </script>
+</body>
+</html>
