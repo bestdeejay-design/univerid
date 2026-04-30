@@ -3,9 +3,12 @@
 // ========================================
 
 document.addEventListener("DOMContentLoaded", () => {
-  
-  // Initialize GSAP
-  if (typeof gsap !== 'undefined') {
+  // Respect reduced motion preference
+  const reduceMotion = (typeof window !== 'undefined' && window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches);
+  const canAnimate = typeof gsap !== 'undefined' && !reduceMotion;
+
+  // Initialize GSAP-based animations only when allowed
+  if (canAnimate) {
     gsap.registerPlugin(ScrollTrigger);
     
     // Hero animations
@@ -86,7 +89,7 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
   
-  // Navbar scroll effect
+  // Navbar scroll effect (no animation-only side effects)
   let lastScroll = 0;
   window.addEventListener("scroll", () => {
     const navbar = document.querySelector(".navbar");
@@ -103,21 +106,23 @@ document.addEventListener("DOMContentLoaded", () => {
     lastScroll = currentScroll;
   });
   
-  // Button click animations
-  document.querySelectorAll(".btn").forEach(btn => {
-    btn.addEventListener("click", function(e) {
-      gsap.to(this, {
-        duration: 0.1,
-        scale: 0.95,
-        onComplete: () => {
-          gsap.to(this, {
-            duration: 0.1,
-            scale: 1
-          });
-        }
+  // Button click animations (optional: only if GSAP is available and not reduced motion)
+  if (typeof gsap !== 'undefined' && !reduceMotion) {
+    document.querySelectorAll(".btn").forEach(btn => {
+      btn.addEventListener("click", function(e) {
+        gsap.to(this, {
+          duration: 0.1,
+          scale: 0.95,
+          onComplete: () => {
+            gsap.to(this, {
+              duration: 0.1,
+              scale: 1
+            });
+          }
+        });
       });
     });
-  });
+  }
   
   console.log("✅ UniverID loaded successfully");
 });
