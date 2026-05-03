@@ -1,0 +1,16 @@
+/* TI Demo palette */
+:root {
+  --ti-primary: #0EA5E9;
+  --ti-bg: #0b1020;
+  --ti-card: rgba(255,255,255,0.04);
+}
+body.theme-ti {
+  background: var(--ti-bg);
+  color: #fff;
+}
+.ti-demo-card {
+  background: var(--ti-card);
+  border: 1px solid rgba(255,255,255,0.15);
+  border-radius: 12px;
+  padding: 16px;
+}

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>TI Demo Dashboard — UniverID</title>
+  <link rel="stylesheet" href="../css/main.css">
+  <link rel="stylesheet" href="../css/ti-demo.css">
+</head>
+<body>
+  <nav class="navbar">
+    <div class="container">
+      <a href="../index.html" class="navbar-brand">🎓 UniverID</a>
+      <ul class="navbar-menu">
+        <li><a href="../ti-demo.html">TI Demo</a></li>
+      </ul>
+    </div>
+  </nav>
+  <section class="section" style="padding-top: 80px;">
+    <div class="container">
+      <h1>TI Демонстрационная панель</h1>
+      <p>Обзор ключевых модулей UniverID в рамках TI.</p>
+      <div class="grid grid-3" id="ti-dashboard-grid">
+        <!-- карточки будут заполнены ниже -->
+      </div>
+    </div>
+  </section>
+  <script src="../demo-data/ti-demo.js"></script>
+  <script>
+    (function(){
+      const grid = document.getElementById('ti-dashboard-grid');
+      TI_DEMO.modules.forEach(m => {
+        const c = document.createElement('div');
+        c.className = 'card';
+        c.innerHTML = `
+          <div class="card-header">
+            <div style="font-size: 2rem;">${m.icon}</div>
+            <h3 class="card-title">${m.title}</h3>
+          </div>
+          <p class="card-text">${m.description}</p>
+        `;
+        grid.appendChild(c);
+      });
+    })();
+  </script>
+</body>
+</html>

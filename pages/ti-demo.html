@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>TI Demo UniverID</title>
+  <link rel="stylesheet" href="../css/main.css">
+  <link rel="stylesheet" href="../css/ti-demo.css">
+  <script>window.TI_DEMO = window.TI_DEMO || {};</script>
+</head>
+<body>
+  <nav class="navbar">
+    <div class="container">
+      <a href="index.html" class="navbar-brand">🎓 UniverID</a>
+      <ul class="navbar-menu">
+        <li><a href="index.html">Главная</a></li>
+        <li><a href="ti-demo.html">TI Demo</a></li>
+      </ul>
+    </div>
+  </nav>
+  <section class="section">
+    <div class="container">
+      <h1>Демо UniverID: Технологический институт</h1>
+      <p>Демо‑страница, демонстрирующая интеграцию UniverID в рамках TI.</p>
+      <div class="grid grid-3" id="ti-modules">
+        <!-- модули будут добавлены через скрипт -->
+      </div>
+    </div>
+  </section>
+  <script src="../demo-data/ti-demo.js"></script>
+  <script>
+    (function(){
+      const container = document.getElementById('ti-modules');
+      const items = TI_DEMO.modules;
+      items.forEach(m => {
+        const card = document.createElement('div');
+        card.className = 'card';
+        card.innerHTML = `
+          <div class="card-header">
+            <div style="font-size: 2rem; margin-bottom: 0.5rem;">${m.icon}</div>
+            <h3 class="card-title">${m.title}</h3>
+          </div>
+          <p class="card-text">${m.description}</p>
+        `;
+        container.appendChild(card);
+      });
+    })();
+  </script>
+</body>
+</html>
