@@ -1,0 +1,23 @@
+name: Auto PR from feature branch to main
+
+on:
+  push:
+    branches:
+      - feat/mobile-home
+
+jobs:
+  pr:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Create Pull Request
+        uses: peter-evans/create-pull-request@v5
+        with:
+          base: main
+          head: feat/mobile-home
+          title: "feat(home): mobile version banner and mobile scaffold"
+          body: |
+            Automated PR by CI to merge mobile-version work into main.
+          draft: false

@@ -1,0 +1,20 @@
+Project Context and Scope
+- Purpose: Provide a stable, documented context for UniverID, enabling a clean rewrite of all pages.
+- Audience: Product, design, frontend developers, QA.
+- Core goals:
+  - Unify UI with a design system
+  - Data-driven rendering for pages
+  - Clear migration path from legacy pages to new templates
+  - Maintainable, testable, accessible UI
+- Current state (summary):
+  - Static multi-page site with a shared CSS design system
+  - Main navigation and a demo data layer in demo-data/
+  - Mobile version banner implemented but not yet tied to a mobile-only experience
+- Risks and blockers:
+  - No centralized data model yet
+  - Some pages reuse inline styles; card/template duplication
+  - No formal build/test pipeline (CI) yet for the entire site
+- Success criteria:
+  - A single source of truth for UI tokens (colors, type, spacing)
+  - Templates that render from data objects
+  - A small, incremental migration plan with PRs and reviews
