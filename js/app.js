@@ -2020,6 +2020,21 @@ document.addEventListener('DOMContentLoaded', () => {
   initUserMode();
   setInterval(updateStatus, 60000);
   updateStatus();
+
+  // URL hash → role: index.html#student or index.html#graduate
+  const hash = window.location.hash.replace('#', '');
+  if (hash === 'student' || hash === 'graduate') {
+    const toggle = document.getElementById('modeToggle');
+    if (userMode !== hash) {
+      userMode = hash;
+      localStorage.setItem('univerid_userMode', userMode);
+      if (toggle) toggle.style.left = userMode === 'graduate' ? '30px' : '2px';
+      updateBottomNav();
+    }
+    // Auto-open the demo after a brief delay for render
+    setTimeout(() => openApp(), 100);
+    return;
+  }
   
   // Check if app was open and restore state
   const wasAppOpen = localStorage.getItem('univerid_appOpen');
