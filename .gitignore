@@ -22,3 +22,11 @@ dist/
 # Environment
 .env
 .env.local
+
+# Docs — локально, не на сервере
+docs/
+mobile/
+tools/
+README.md
+readme.txt
+htaccess
