@@ -1,0 +1,1054 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>UniverID — Цифровая экосистема университета</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --white: #FFFFFF;
+      --black: #1D1D1F;
+      --gray-100: #F5F5F7;
+      --gray-200: #E8E8ED;
+      --gray-400: #86868B;
+      --gray-500: #6E6E73;
+      --blue: #007AFF;
+      --blue-light: #E8F0FE;
+      --blue-dark: #0040DD;
+      --green: #34C759;
+      --orange: #FF9500;
+      --purple: #AF52DE;
+      --red: #FF3B30;
+      --teal: #5AC8FA;
+
+      --font: 'Inter', -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Helvetica Neue', sans-serif;
+      --slide-padding: 100px 80px;
+      --max-width: 1100px;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      scroll-snap-type: y proximity;
+    }
+
+    body {
+      font-family: var(--font);
+      background: var(--white);
+      color: var(--black);
+      line-height: 1.5;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    /* === NAV === */
+    .nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 1000;
+      background: rgba(255,255,255,0.85);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border-bottom: 1px solid rgba(0,0,0,0.06);
+      padding: 0 40px;
+      height: 48px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .nav-logo {
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--black);
+      letter-spacing: -0.2px;
+    }
+    .nav-logo span { color: var(--blue); }
+    .nav-dots {
+      display: flex;
+      gap: 6px;
+      align-items: center;
+    }
+    .nav-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--gray-400);
+      transition: all 0.3s;
+      cursor: pointer;
+      border: none;
+      padding: 0;
+    }
+    .nav-dot:hover { background: var(--blue); }
+    .nav-dot.active { background: var(--black); transform: scale(1.3); }
+
+    /* === SLIDES === */
+    .slide {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: var(--slide-padding);
+      scroll-snap-align: start;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .slide-content {
+      max-width: var(--max-width);
+      width: 100%;
+      margin: 0 auto;
+      opacity: 0;
+      transform: translateY(30px);
+      transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .slide-content.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* Typography */
+    .slide-label {
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--blue);
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      margin-bottom: 16px;
+    }
+    h1 {
+      font-size: clamp(40px, 6vw, 72px);
+      font-weight: 800;
+      letter-spacing: -2px;
+      line-height: 1.05;
+      margin-bottom: 16px;
+    }
+    h1 em {
+      font-style: normal;
+      color: var(--blue);
+    }
+    h2 {
+      font-size: clamp(32px, 4.5vw, 56px);
+      font-weight: 700;
+      letter-spacing: -1.5px;
+      line-height: 1.1;
+      margin-bottom: 16px;
+    }
+    h2 em { font-style: normal; color: var(--blue); }
+    h3 {
+      font-size: 20px;
+      font-weight: 600;
+      letter-spacing: -0.3px;
+      line-height: 1.3;
+      margin-bottom: 8px;
+    }
+    .subtitle {
+      font-size: clamp(18px, 2vw, 24px);
+      color: var(--gray-500);
+      font-weight: 400;
+      line-height: 1.4;
+      max-width: 680px;
+      margin-bottom: 8px;
+    }
+    .subtitle-lg {
+      font-size: clamp(20px, 2.5vw, 28px);
+      color: var(--gray-500);
+      font-weight: 400;
+      line-height: 1.4;
+      max-width: 720px;
+    }
+    .desc {
+      font-size: 17px;
+      color: var(--gray-500);
+      line-height: 1.6;
+      max-width: 600px;
+    }
+    .caption {
+      font-size: 13px;
+      color: var(--gray-500);
+      margin-top: 24px;
+    }
+
+    /* === SLIDE 1: HERO === */
+    .slide-hero {
+      background: var(--white);
+      text-align: center;
+      align-items: center;
+    }
+    .slide-hero .slide-content {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      max-width: 800px;
+    }
+    .hero-icon {
+      width: 72px;
+      height: 72px;
+      border-radius: 20px;
+      background: var(--blue);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 32px;
+      box-shadow: 0 8px 32px rgba(0,122,255,0.25);
+    }
+    .hero-icon svg {
+      width: 40px;
+      height: 40px;
+      fill: white;
+    }
+    .hero-subtitle {
+      font-size: 15px;
+      color: var(--gray-500);
+      font-weight: 500;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      margin-bottom: 24px;
+    }
+    .slide-hero h1 {
+      font-size: clamp(44px, 7vw, 80px);
+      font-weight: 800;
+      letter-spacing: -3px;
+      line-height: 1.05;
+      margin-bottom: 20px;
+    }
+    .slide-hero .subtitle-lg {
+      max-width: 640px;
+      margin-bottom: 40px;
+    }
+    .hero-stats {
+      display: flex;
+      gap: 48px;
+      margin-top: 8px;
+    }
+    .hero-stat {
+      text-align: center;
+    }
+    .hero-stat-num {
+      font-size: 32px;
+      font-weight: 700;
+      color: var(--black);
+      letter-spacing: -1px;
+    }
+    .hero-stat-label {
+      font-size: 13px;
+      color: var(--gray-500);
+      margin-top: 2px;
+    }
+    .hero-scroll {
+      position: absolute;
+      bottom: 32px;
+      left: 50%;
+      transform: translateX(-50%);
+      animation: bounce 2s infinite;
+    }
+    .hero-scroll svg {
+      width: 24px;
+      height: 24px;
+      fill: var(--gray-400);
+    }
+    @keyframes bounce {
+      0%, 100% { transform: translateX(-50%) translateY(0); }
+      50% { transform: translateX(-50%) translateY(8px); }
+    }
+
+    /* === SLIDE 2: PROBLEM === */
+    .slide-problem {
+      background: var(--gray-100);
+    }
+    .problem-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+      margin-top: 32px;
+      max-width: 800px;
+    }
+    .problem-item {
+      background: var(--white);
+      border-radius: 16px;
+      padding: 28px 32px;
+      border: 1px solid var(--gray-200);
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+    .problem-item:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba(0,0,0,0.04);
+    }
+    .problem-item .icon {
+      width: 32px;
+      height: 32px;
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 14px;
+      font-size: 16px;
+    }
+    .problem-item h4 {
+      font-size: 16px;
+      font-weight: 600;
+      margin-bottom: 6px;
+    }
+    .problem-item p {
+      font-size: 14px;
+      color: var(--gray-500);
+      line-height: 1.5;
+    }
+
+    /* === SLIDE 3: SOLUTION === */
+    .slide-solution {
+      background: var(--black);
+      color: var(--white);
+    }
+    .slide-solution .subtitle,
+    .slide-solution .desc,
+    .slide-solution .solution-feat-label { color: rgba(255,255,255,0.6); }
+    .slide-solution .slide-label { color: var(--blue); }
+
+    .solution-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+      margin-top: 40px;
+      max-width: 900px;
+    }
+    .solution-feat {
+      padding: 24px;
+      border-radius: 16px;
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.08);
+      transition: background 0.3s;
+    }
+    .solution-feat:hover { background: rgba(255,255,255,0.08); }
+    .solution-feat-icon {
+      width: 40px;
+      height: 40px;
+      border-radius: 10px;
+      background: rgba(0,122,255,0.15);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 14px;
+    }
+    .solution-feat-icon svg {
+      width: 22px;
+      height: 22px;
+      fill: var(--blue);
+    }
+    .solution-feat h4 {
+      font-size: 16px;
+      font-weight: 600;
+      margin-bottom: 4px;
+    }
+    .solution-feat-label {
+      font-size: 13px;
+      color: rgba(255,255,255,0.5);
+      line-height: 1.4;
+    }
+
+    /* === SLIDE 4: ROLES === */
+    .roles-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+      margin-top: 32px;
+      max-width: 800px;
+    }
+    .role-card {
+      padding: 24px;
+      border-radius: 14px;
+      border: 1px solid var(--gray-200);
+      transition: all 0.3s;
+      cursor: default;
+    }
+    .role-card:hover {
+      border-color: var(--blue);
+      box-shadow: 0 4px 16px rgba(0,122,255,0.08);
+    }
+    .role-card .icon {
+      font-size: 28px;
+      margin-bottom: 10px;
+      display: block;
+    }
+    .role-card h4 {
+      font-size: 15px;
+      font-weight: 600;
+      margin-bottom: 2px;
+    }
+    .role-card p {
+      font-size: 13px;
+      color: var(--gray-500);
+    }
+
+    /* === SLIDE 5: MODULES === */
+    .modules-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 12px;
+      margin-top: 32px;
+      max-width: 1000px;
+    }
+    .module-chip {
+      padding: 16px 18px;
+      border-radius: 12px;
+      border: 1px solid var(--gray-200);
+      font-size: 13px;
+      font-weight: 500;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      transition: all 0.3s;
+      cursor: default;
+    }
+    .module-chip:hover {
+      border-color: var(--blue);
+      background: var(--blue-light);
+      transform: translateY(-1px);
+    }
+    .module-chip .icon {
+      font-size: 18px;
+      flex-shrink: 0;
+    }
+
+    /* === SLIDE 6: NUMBERS === */
+    .slide-numbers {
+      background: var(--gray-100);
+    }
+    .numbers-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 24px;
+      margin-top: 40px;
+      max-width: 900px;
+    }
+    .num-card {
+      text-align: center;
+      padding: 32px 16px;
+    }
+    .num-card .num {
+      font-size: 52px;
+      font-weight: 800;
+      letter-spacing: -2px;
+      color: var(--black);
+      line-height: 1;
+      margin-bottom: 6px;
+    }
+    .num-card .num.blue { color: var(--blue); }
+    .num-card .num.green { color: var(--green); }
+    .num-card .num.orange { color: var(--orange); }
+    .num-card .num.purple { color: var(--purple); }
+    .num-card .label {
+      font-size: 14px;
+      color: var(--gray-500);
+    }
+    .num-card .sub {
+      font-size: 12px;
+      color: var(--gray-400);
+      margin-top: 2px;
+    }
+
+    /* === SLIDE 7: AI === */
+    .slide-ai {
+      background: linear-gradient(135deg, #F5F7FA 0%, #E8F0FE 100%);
+    }
+    .ai-block {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 48px;
+      margin-top: 32px;
+      max-width: 900px;
+      align-items: center;
+    }
+    .ai-info h2 { font-size: clamp(28px, 3.5vw, 44px); }
+    .ai-info .desc { font-size: 16px; margin-top: 16px; }
+    .ai-features {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+    .ai-feat {
+      display: flex;
+      gap: 14px;
+      align-items: flex-start;
+      padding: 16px 20px;
+      background: var(--white);
+      border-radius: 12px;
+      border: 1px solid var(--gray-200);
+      transition: transform 0.3s;
+    }
+    .ai-feat:hover { transform: translateX(4px); }
+    .ai-feat-check {
+      width: 24px;
+      height: 24px;
+      border-radius: 50%;
+      background: var(--blue-light);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      margin-top: 1px;
+    }
+    .ai-feat-check svg {
+      width: 14px;
+      height: 14px;
+      fill: var(--blue);
+    }
+    .ai-feat-text h4 { font-size: 14px; font-weight: 600; margin-bottom: 2px; }
+    .ai-feat-text p { font-size: 13px; color: var(--gray-500); line-height: 1.4; }
+
+    /* === SLIDE 8: ROADMAP === */
+    .roadmap {
+      display: flex;
+      gap: 24px;
+      margin-top: 32px;
+      max-width: 900px;
+    }
+    .roadmap-phase {
+      flex: 1;
+      padding: 28px 24px;
+      border-radius: 16px;
+      border: 1px solid var(--gray-200);
+    }
+    .roadmap-phase.current { border-color: var(--blue); background: var(--blue-light); }
+    .roadmap-phase h4 {
+      font-size: 15px;
+      font-weight: 600;
+      margin-bottom: 4px;
+    }
+    .roadmap-phase .phase-label {
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--blue);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: 12px;
+    }
+    .roadmap-phase ul {
+      list-style: none;
+      padding: 0;
+    }
+    .roadmap-phase li {
+      font-size: 13px;
+      color: var(--gray-500);
+      padding: 4px 0;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .roadmap-phase li::before {
+      content: '';
+      width: 4px;
+      height: 4px;
+      border-radius: 50%;
+      background: var(--gray-400);
+      flex-shrink: 0;
+    }
+    .roadmap-phase.current li::before { background: var(--blue); }
+
+    /* === SLIDE 9: CONTACT === */
+    .slide-contact {
+      background: var(--black);
+      color: var(--white);
+      text-align: center;
+      align-items: center;
+    }
+    .slide-contact .slide-content {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      max-width: 600px;
+    }
+    .slide-contact h2 { color: var(--white); }
+    .slide-contact .subtitle { color: rgba(255,255,255,0.5); max-width: 480px; }
+    .contact-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      padding: 14px 28px;
+      border-radius: 50px;
+      background: rgba(255,255,255,0.08);
+      border: 1px solid rgba(255,255,255,0.1);
+      margin-top: 28px;
+      font-size: 15px;
+      color: var(--white);
+      text-decoration: none;
+      transition: background 0.3s;
+    }
+    .contact-badge:hover { background: rgba(255,255,255,0.12); }
+    .contact-badge svg { width: 20px; height: 20px; fill: var(--blue); }
+    .contact-links {
+      display: flex;
+      gap: 16px;
+      margin-top: 20px;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+    .contact-link {
+      padding: 12px 24px;
+      border-radius: 50px;
+      border: 1px solid rgba(255,255,255,0.1);
+      color: rgba(255,255,255,0.6);
+      font-size: 14px;
+      text-decoration: none;
+      transition: all 0.3s;
+    }
+    .contact-link:hover {
+      border-color: var(--blue);
+      color: var(--white);
+    }
+    .contact-caption {
+      font-size: 12px;
+      color: rgba(255,255,255,0.3);
+      margin-top: 32px;
+      letter-spacing: 0.5px;
+    }
+
+    /* === RESPONSIVE === */
+    @media (max-width: 900px) {
+      :root { --slide-padding: 60px 32px; }
+      .problem-grid { grid-template-columns: 1fr; }
+      .solution-grid { grid-template-columns: 1fr 1fr; }
+      .roles-grid { grid-template-columns: repeat(2, 1fr); }
+      .modules-grid { grid-template-columns: repeat(2, 1fr); }
+      .numbers-grid { grid-template-columns: repeat(2, 1fr); gap: 16px; }
+      .ai-block { grid-template-columns: 1fr; gap: 24px; }
+      .roadmap { flex-direction: column; }
+      .hero-stats { gap: 24px; }
+    }
+    @media (max-width: 600px) {
+      :root { --slide-padding: 48px 20px; }
+      .solution-grid { grid-template-columns: 1fr; }
+      .roles-grid { grid-template-columns: 1fr 1fr; }
+      .modules-grid { grid-template-columns: 1fr 1fr; }
+      .numbers-grid { grid-template-columns: 1fr 1fr; gap: 12px; }
+      .num-card .num { font-size: 36px; }
+      .hero-stats { flex-wrap: wrap; gap: 16px; justify-content: center; }
+      .nav { padding: 0 16px; }
+    }
+
+    /* SVG inline icons */
+    .icon-svg { width: 22px; height: 22px; display: inline-block; }
+  </style>
+</head>
+<body>
+
+<!-- Navigation -->
+<nav class="nav" id="nav">
+  <div class="nav-logo">Univer<span>ID</span></div>
+  <div class="nav-dots" id="navDots"></div>
+</nav>
+
+<!-- SLIDE 1: Hero -->
+<section class="slide slide-hero" id="slide-0">
+  <div class="slide-content" data-delay="0">
+    <img src="../images/icon-app.png" alt="UniverID" style="width:84px;height:84px;display:block;margin:0 auto 28px;">
+    <div class="hero-subtitle">Цифровая экосистема университета</div>
+    <h1>Univer<span style="color:var(--blue)">ID</span></h1>
+    <div class="subtitle-lg">Единая платформа, объединяющая студентов,<br>выпускников, преподавателей и администрацию вуза</div>
+    <div class="hero-stats">
+      <div class="hero-stat"><div class="hero-stat-num">20</div><div class="hero-stat-label">модулей</div></div>
+      <div class="hero-stat"><div class="hero-stat-num">200+</div><div class="hero-stat-label">возможностей</div></div>
+      <div class="hero-stat"><div class="hero-stat-num">6</div><div class="hero-stat-label">ролей</div></div>
+      <div class="hero-stat"><div class="hero-stat-num">1</div><div class="hero-stat-label">экосистема</div></div>
+    </div>
+    <div class="hero-scroll">
+      <svg viewBox="0 0 24 24"><path d="M12 5.83L15.17 9l1.41-1.41L12 3 7.41 7.59 8.83 9 12 5.83zm0 12.34L8.83 15l-1.41 1.41L12 21l4.59-4.59L15.17 15 12 18.17z"/></svg>
+    </div>
+  </div>
+</section>
+
+<!-- SLIDE 2: Problem -->
+<section class="slide slide-problem" id="slide-1">
+  <div class="slide-content" data-delay="100">
+    <div class="slide-label">Проблема</div>
+    <h2>Цифровой хаос<br>в университете</h2>
+    <div class="subtitle" style="margin-bottom:8px;">
+      Студенты и сотрудники вынуждены жонглировать десятками разрозненных сервисов
+    </div>
+    <div class="problem-grid">
+      <div class="problem-item">
+        <div class="icon" style="background:#FFEBEE;color:#D32F2F;">✕</div>
+        <h4>Разрозненные системы</h4>
+        <p>Moodle, 1С, деканат, расписание — каждый сервис требует отдельного входа и не связан с другими</p>
+      </div>
+      <div class="problem-item">
+        <div class="icon" style="background:#FFF3E0;color:#E65100;">!</div>
+        <h4>Нет единого окна</h4>
+        <p>Зачётки, расписание, льготы, карьера — данные разбросаны по разным платформам и кабинетам</p>
+      </div>
+      <div class="problem-item">
+        <div class="icon" style="background:#E8EAF6;color:#283593;">?</div>
+        <h4>Слабая коммуникация</h4>
+        <p>Деканат → студент через доски объявлений, потерянные письма, устаревшие сайты</p>
+      </div>
+      <div class="problem-item">
+        <div class="icon" style="background:#F3E5F5;color:#6A1B9A;">–</div>
+        <h4>Нет персонализации</h4>
+        <p>Каждый пользователь получает один и тот же интерфейс, независимо от роли и потребностей</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SLIDE 3: Solution -->
+<section class="slide slide-solution" id="slide-2">
+  <div class="slide-content" data-delay="100">
+    <div class="slide-label">Решение</div>
+    <h2>Одна платформа —<br><em style="color:var(--blue);font-style:normal;">все возможности</em></h2>
+    <div class="subtitle" style="max-width:700px;">
+      UniverID объединяет учебный процесс, коммуникации, карьеру, льготы и управление в единой цифровой среде, адаптированной под каждую роль
+    </div>
+    <div class="solution-grid">
+      <div class="solution-feat">
+        <div class="solution-feat-icon"><svg viewBox="0 0 24 24"><path d="M12 3L1 9l4 2.18v6L12 21l7-3.82v-6l4-2.18L12 3zm6.82 6L12 12.72 5.18 9 12 5.28 18.82 9zM17 15.99l-5 2.73-5-2.73v-3.72L12 15l5-2.73v3.72z"/></svg></div>
+        <h4>Единый вход</h4>
+        <div class="solution-feat-label">Госуслуги, SSO, ЛК вуза — один аккаунт для всех модулей</div>
+      </div>
+      <div class="solution-feat">
+        <div class="solution-feat-icon"><svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg></div>
+        <h4>Ролевой интерфейс</h4>
+        <div class="solution-feat-label">Студент, преподаватель, выпускник — каждый видит своё</div>
+      </div>
+      <div class="solution-feat">
+        <div class="solution-feat-icon"><svg viewBox="0 0 24 24"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zM9 17H7v-7h2v7zm4 0h-2V7h2v10zm4 0h-2v-4h2v4z"/></svg></div>
+        <h4>Аналитика</h4>
+        <div class="solution-feat-label">Дашборды, прогнозы, отчёты для администрации в реальном времени</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SLIDE 4: Roles -->
+<section class="slide" id="slide-3">
+  <div class="slide-content" data-delay="100">
+    <div class="slide-label">Роли</div>
+    <h2>Для каждого —<br>свой <em>UniverID</em></h2>
+    <div class="subtitle" style="margin-bottom:0;">Шесть ролей — шесть персонализированных интерфейсов</div>
+    <div class="roles-grid">
+      <div class="role-card">
+        <span class="icon">🎓</span>
+        <h4>Студент</h4>
+        <p>Зачётка, расписание, чат с деканатом, льготы, карьера</p>
+      </div>
+      <div class="role-card">
+        <span class="icon">⭐</span>
+        <h4>Выпускник</h4>
+        <p>Нетворкинг, менторство, эндаумент-фонд, встречи</p>
+      </div>
+      <div class="role-card">
+        <span class="icon">👨‍🏫</span>
+        <h4>Преподаватель</h4>
+        <p>AI-ассистент, аналитика групп, опросы, гранты</p>
+      </div>
+      <div class="role-card">
+        <span class="icon">📋</span>
+        <h4>Абитуриент</h4>
+        <p>3D-туры, калькулятор шансов, олимпиады, дни открытых дверей</p>
+      </div>
+      <div class="role-card">
+        <span class="icon">📊</span>
+        <h4>Администрация</h4>
+        <p>Дашборды, отчёты для Минобрнауки, прогнозы отчислений</p>
+      </div>
+      <div class="role-card">
+        <span class="icon">👨‍👩‍👧</span>
+        <h4>Родители</h4>
+        <p>Успеваемость, финансы, календарь дат (с разрешения студента)</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SLIDE 5: Modules -->
+<section class="slide slide-problem" id="slide-4">
+  <div class="slide-content" data-delay="100">
+    <div class="slide-label">Модули</div>
+    <h2>20 модулей —<br>полная <em>экосистема</em></h2>
+    <div class="subtitle" style="margin-bottom:0;">От авторизации до AI-куратора — все аспекты университетской жизни</div>
+    <div class="modules-grid">
+      <div class="module-chip"><span class="icon">🔐</span>Авторизация и профили</div>
+      <div class="module-chip"><span class="icon">📖</span>Учебный процесс</div>
+      <div class="module-chip"><span class="icon">📅</span>Расписание</div>
+      <div class="module-chip"><span class="icon">💬</span>Коммуникации</div>
+      <div class="module-chip"><span class="icon">💼</span>Карьера и практики</div>
+      <div class="module-chip"><span class="icon">👥</span>Выпускники</div>
+      <div class="module-chip"><span class="icon">🏆</span>Геймификация</div>
+      <div class="module-chip"><span class="icon">🎯</span>Абитуриентам</div>
+      <div class="module-chip"><span class="icon">📚</span>Преподавателям</div>
+      <div class="module-chip"><span class="icon">📈</span>Аналитика</div>
+      <div class="module-chip"><span class="icon">🎫</span>Льготы и скидки</div>
+      <div class="module-chip"><span class="icon">🏠</span>Жильё</div>
+      <div class="module-chip"><span class="icon">❤️</span>Здоровье</div>
+      <div class="module-chip"><span class="icon">🌍</span>Международное</div>
+      <div class="module-chip"><span class="icon">🔬</span>Наука</div>
+      <div class="module-chip"><span class="icon">🌿</span>Экология</div>
+      <div class="module-chip"><span class="icon">🎪</span>Мероприятия</div>
+      <div class="module-chip"><span class="icon">👨‍👩‍👧</span>Семейный кабинет</div>
+      <div class="module-chip"><span class="icon">🤝</span>Партнёрства</div>
+      <div class="module-chip"><span class="icon">🤖</span>AI-куратор</div>
+    </div>
+    <div class="caption">Каждый модуль содержит от 7 до 16 возможностей</div>
+  </div>
+</section>
+
+<!-- SLIDE 6: Numbers + Key features -->
+<section class="slide slide-numbers" id="slide-5">
+  <div class="slide-content" data-delay="100">
+    <div class="slide-label">Возможности</div>
+    <h2>Цифры и <em>ключевые</em> возможности</h2>
+    <div class="numbers-grid">
+      <div class="num-card">
+        <div class="num blue">200+</div>
+        <div class="label">функций</div>
+        <div class="sub">охватывающих все аспекты жизни вуза</div>
+      </div>
+      <div class="num-card">
+        <div class="num green">16</div>
+        <div class="label">карьерных инструментов</div>
+        <div class="sub">от вакансий до NFT-дипломов</div>
+      </div>
+      <div class="num-card">
+        <div class="num orange">14</div>
+        <div class="label">льготных категорий</div>
+        <div class="sub">от IT-лицензий до транспортных</div>
+      </div>
+      <div class="num-card">
+        <div class="num purple">14</div>
+        <div class="label">AI-функций куратора</div>
+        <div class="sub">от плана дня до прогноза оценок</div>
+      </div>
+    </div>
+    <div style="display:flex;flex-wrap:wrap;gap:8px;margin-top:32px;max-width:800px;">
+      <span style="padding:8px 16px;background:var(--white);border:1px solid var(--gray-200);border-radius:20px;font-size:13px;font-weight:500;">📱 PWA — работает без интернета</span>
+      <span style="padding:8px 16px;background:var(--white);border:1px solid var(--gray-200);border-radius:20px;font-size:13px;font-weight:500;">🔗 Интеграция с hh.ru, Moodle, 1С</span>
+      <span style="padding:8px 16px;background:var(--white);border:1px solid var(--gray-200);border-radius:20px;font-size:13px;font-weight:500;">🎮 Геймификация и баллы</span>
+      <span style="padding:8px 16px;background:var(--white);border:1px solid var(--gray-200);border-radius:20px;font-size:13px;font-weight:500;">🔐 Госуслуги и SSO</span>
+      <span style="padding:8px 16px;background:var(--white);border:1px solid var(--gray-200);border-radius:20px;font-size:13px;font-weight:500;">📊 Аналитика для Минобрнауки</span>
+      <span style="padding:8px 16px;background:var(--white);border:1px solid var(--gray-200);border-radius:20px;font-size:13px;font-weight:500;">🌐 Мультиязычность</span>
+    </div>
+  </div>
+</section>
+
+<!-- SLIDE 7: AI -->
+<section class="slide slide-ai" id="slide-6">
+  <div class="slide-content" data-delay="100">
+    <div class="slide-label">Технологии</div>
+    <div class="ai-block">
+      <div class="ai-info">
+        <h2>AI-куратор —<br><em>ваш цифровой</em><br>наставник</h2>
+        <div class="desc">
+          Персональный AI-ассистент, который помогает студенту планировать день, отслеживать прогресс, готовиться к экзаменам и не выгорать.
+        </div>
+        <div style="margin-top:20px;display:flex;flex-wrap:wrap;gap:8px;">
+          <span style="padding:6px 14px;background:var(--white);border-radius:16px;font-size:12px;font-weight:500;color:var(--gray-500);border:1px solid var(--gray-200);">🧠 План на день</span>
+          <span style="padding:6px 14px;background:var(--white);border-radius:16px;font-size:12px;font-weight:500;color:var(--gray-500);border:1px solid var(--gray-200);">📈 Прогноз оценок</span>
+          <span style="padding:6px 14px;background:var(--white);border-radius:16px;font-size:12px;font-weight:500;color:var(--gray-500);border:1px solid var(--gray-200);">📝 AI-тьютор</span>
+          <span style="padding:6px 14px;background:var(--white);border-radius:16px;font-size:12px;font-weight:500;color:var(--gray-500);border:1px solid var(--gray-200);">🎯 Выявление проблем</span>
+          <span style="padding:6px 14px;background:var(--white);border-radius:16px;font-size:12px;font-weight:500;color:var(--gray-500);border:1px solid var(--gray-200);">📊 Дашборд прогресса</span>
+        </div>
+      </div>
+      <div class="ai-features">
+        <div class="ai-feat">
+          <div class="ai-feat-check"><svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg></div>
+          <div class="ai-feat-text">
+            <h4>Умное планирование</h4>
+            <p>Составляет расписание на основе дедлайнов, пар и секций</p>
+          </div>
+        </div>
+        <div class="ai-feat">
+          <div class="ai-feat-check"><svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg></div>
+          <div class="ai-feat-text">
+            <h4>Прогноз успеваемости</h4>
+            <p>Анализирует текущие оценки и предсказывает результат семестра</p>
+          </div>
+        </div>
+        <div class="ai-feat">
+          <div class="ai-feat-check"><svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg></div>
+          <div class="ai-feat-text">
+            <h4>Интеграция с модулями</h4>
+            <p>Работает со всеми 20 модулями платформы, собирая данные в единую картину</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SLIDE 8: Tech -->
+<section class="slide" id="slide-7">
+  <div class="slide-content" data-delay="100">
+    <div class="slide-label">Стек технологий</div>
+    <h2>Современная <em>веб-платформа</em></h2>
+    <div class="subtitle" style="max-width:600px;">Чистый веб — без тяжёлых фреймворков. PWA, тёмная тема, работа без интернета.</div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:16px;margin-top:32px;max-width:800px;">
+      <div style="padding:20px;border-radius:12px;border:1px solid var(--gray-200);text-align:center;">
+        <div style="font-size:32px;font-weight:800;color:var(--blue);margin-bottom:4px;">HTML5</div>
+        <div style="font-size:13px;color:var(--gray-500);">Семантическая разметка</div>
+      </div>
+      <div style="padding:20px;border-radius:12px;border:1px solid var(--gray-200);text-align:center;">
+        <div style="font-size:32px;font-weight:800;color:var(--blue);margin-bottom:4px;">CSS3</div>
+        <div style="font-size:13px;color:var(--gray-500);">Дизайн-система, Grid, Flexbox</div>
+      </div>
+      <div style="padding:20px;border-radius:12px;border:1px solid var(--gray-200);text-align:center;">
+        <div style="font-size:32px;font-weight:800;color:var(--blue);margin-bottom:4px;">ES6+</div>
+        <div style="font-size:13px;color:var(--gray-500);">Чистый JavaScript</div>
+      </div>
+      <div style="padding:20px;border-radius:12px;border:1px solid var(--gray-200);text-align:center;">
+        <div style="font-size:32px;font-weight:800;color:var(--blue);margin-bottom:4px;">PWA</div>
+        <div style="font-size:13px;color:var(--gray-500);">Работает офлайн</div>
+      </div>
+      <div style="padding:20px;border-radius:12px;border:1px solid var(--gray-200);text-align:center;">
+        <div style="font-size:32px;font-weight:800;color:var(--blue);margin-bottom:4px;">GSAP</div>
+        <div style="font-size:13px;color:var(--gray-500);">Плавные анимации</div>
+      </div>
+      <div style="padding:20px;border-radius:12px;border:1px solid var(--gray-200);text-align:center;">
+        <div style="font-size:32px;font-weight:800;color:var(--blue);margin-bottom:4px;">Inter</div>
+        <div style="font-size:13px;color:var(--gray-500);">Современная типографика</div>
+      </div>
+    </div>
+    <div class="caption" style="margin-top:24px;"></div>
+  </div>
+</section>
+
+<!-- SLIDE 9: Roadmap -->
+<section class="slide slide-problem" id="slide-8">
+  <div class="slide-content" data-delay="100">
+    <div class="slide-label">Развитие</div>
+    <h2>Дорожная <em>карта</em></h2>
+    <div class="subtitle" style="margin-bottom:0;">Три фазы: от демо до полноценной экосистемы</div>
+    <div class="roadmap">
+      <div class="roadmap-phase current">
+        <div class="phase-label">● Фаза 1 — Сейчас</div>
+        <h4>Демо-версия</h4>
+        <ul>
+          <li>Главная страница и лендинг</li>
+          <li>Авторизация и дашборд</li>
+          <li>Расписание и успеваемость</li>
+          <li>Карьера и резюме</li>
+          <li>Мероприятия и льготы</li>
+          <li>AI-ассистент</li>
+        </ul>
+      </div>
+      <div class="roadmap-phase">
+        <div class="phase-label" style="color:var(--gray-400);">○ Фаза 2</div>
+        <h4>Развитие</h4>
+        <ul>
+          <li>Мобильное приложение (PWA)</li>
+          <li>Реальная интеграция с API вуза</li>
+          <li>Push-уведомления</li>
+          <li>Интеграция с Госуслугами</li>
+          <li>Админ-панель</li>
+          <li>Система уведомлений</li>
+        </ul>
+      </div>
+      <div class="roadmap-phase">
+        <div class="phase-label" style="color:var(--gray-400);">○ Фаза 3</div>
+        <h4>Экосистема</h4>
+        <ul>
+          <li>Модуль жилья и аренды</li>
+          <li>Научная деятельность</li>
+          <li>Международный модуль</li>
+          <li>Семейный кабинет</li>
+          <li>Модуль преподавателей</li>
+          <li>SaaS-адаптация под другие вузы</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SLIDE 10: Contact -->
+<section class="slide slide-contact" id="slide-9">
+  <div class="slide-content" data-delay="100">
+    <img src="../images/icon-app.png" alt="UniverID" style="width:84px;height:84px;display:block;margin:0 auto 24px;">
+    <h2>Давайте <em>обсудим</em></h2>
+    <div class="subtitle" style="max-width:440px;margin-bottom:8px;">
+      UniverID — цифровая экосистема, которая меняет университет
+    </div>
+    <a href="https://univerid.ru" class="contact-badge" target="_blank">
+      <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/></svg>
+      univerid.ru
+    </a>
+    <div class="contact-links">
+            <span class="contact-link">Разработчик: AXIIOM</span>
+      <a href="https://univerid.ru" class="contact-link" target="_blank">Демо</a>
+    </div>
+    <div class="contact-caption">© 2026 UniverID — Цифровая экосистема Технологического института</div>
+  </div>
+</section>
+
+<script>
+  // === Intersection Observer for reveal animations ===
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+      }
+    });
+  }, { threshold: 0.15 });
+
+  document.querySelectorAll('.slide-content').forEach(el => observer.observe(el));
+
+  // === Navigation dots ===
+  const slides = document.querySelectorAll('.slide');
+  const navDots = document.getElementById('navDots');
+
+  slides.forEach((_, i) => {
+    const dot = document.createElement('button');
+    dot.className = 'nav-dot' + (i === 0 ? ' active' : '');
+    dot.setAttribute('aria-label', 'Слайд ' + (i + 1));
+    dot.addEventListener('click', () => {
+      slides[i].scrollIntoView({ behavior: 'smooth' });
+    });
+    navDots.appendChild(dot);
+  });
+
+  // === Active dot tracking ===
+  const slideObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const idx = Array.from(slides).indexOf(entry.target);
+        document.querySelectorAll('.nav-dot').forEach((d, i) => {
+          d.classList.toggle('active', i === idx);
+        });
+      }
+    });
+  }, { threshold: 0.4 });
+
+  slides.forEach(s => slideObserver.observe(s));
+
+  // === Keyboard navigation ===
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'ArrowDown' || e.key === 'ArrowRight') {
+      const current = Array.from(slides).find(s => {
+        const rect = s.getBoundingClientRect();
+        return rect.top <= 100 && rect.bottom > 100;
+      });
+      if (current) {
+        const next = current.nextElementSibling;
+        if (next && next.classList.contains('slide')) {
+          next.scrollIntoView({ behavior: 'smooth' });
+        }
+      }
+    }
+    if (e.key === 'ArrowUp' || e.key === 'ArrowLeft') {
+      const current = Array.from(slides).find(s => {
+        const rect = s.getBoundingClientRect();
+        return rect.top <= 100 && rect.bottom > 100;
+      });
+      if (current) {
+        const prev = current.previousElementSibling;
+        if (prev && prev.classList.contains('slide')) {
+          prev.scrollIntoView({ behavior: 'smooth' });
+        }
+      }
+    }
+  });
+</script>
+
+</body>
+</html>
