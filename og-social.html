@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="ru" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<title>UniverID — социальное превью</title>
+<style>
+  :root{
+    --primary:#2563EB;
+    --primary-dark:#1D4ED8;
+    --bg-dark:#0F172A;
+    --bg-card:#1E293B;
+    --text:#F8FAFC;
+    --text-muted:#94A3B8;
+  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  html,body{height:100%;}
+  body{
+    font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;
+    background:
+      radial-gradient(1100px 560px at 78% -12%, rgba(37,99,235,0.22), transparent 60%),
+      radial-gradient(800px 500px at 0% 120%, rgba(37,99,235,0.10), transparent 55%),
+      var(--bg-dark);
+    color:var(--text);
+    width:1280px;
+    height:640px;
+    padding:40pt;
+    display:flex;
+    align-items:center;
+  }
+  .hero{max-width:1160px;width:100%;}
+  .logo{
+    width:88px;height:88px;border-radius:22px;
+    background:linear-gradient(135deg,var(--primary),var(--primary-dark));
+    display:flex;align-items:center;justify-content:center;
+    color:#fff;margin-bottom:30px;
+    box-shadow:0 14px 34px rgba(37,99,235,0.40);
+  }
+  .logo svg{width:50px;height:50px;}
+  h1{font-size:74px;font-weight:800;letter-spacing:-0.02em;line-height:1;}
+  .tagline{font-size:30px;color:var(--text);margin-top:16px;font-weight:600;letter-spacing:-0.01em;}
+  .desc{font-size:20px;color:var(--text-muted);margin-top:14px;max-width:780px;line-height:1.45;}
+  .features{display:flex;gap:14px;margin-top:36px;flex-wrap:wrap;}
+  .feature{
+    display:flex;align-items:center;gap:11px;
+    background:var(--bg-card);
+    border:1px solid rgba(255,255,255,0.08);
+    padding:13px 19px;border-radius:15px;
+    font-size:17px;color:var(--text);
+  }
+  .feature svg{width:23px;height:23px;color:var(--primary);}
+</style>
+</head>
+<body>
+<svg style="display:none"><defs>
+  <symbol id="icon-grad" viewBox="0 0 24 24"><path fill="currentColor" d="M12 3L1 9l4 2.18v6L12 21l7-3.82v-6l4-2.18L12 3zm6.82 6L12 12.72 5.18 9 12 5.28 18.82 9zM17 15.99l-5 2.73-5-2.73v-3.72L12 15l5-2.73v3.72z"/></symbol>
+  <symbol id="icon-book" viewBox="0 0 24 24"><path fill="currentColor" d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-5 14H7v-2h7v2zm3-4H7v-2h10v2zm0-4H7V7h10v2z"/></symbol>
+  <symbol id="icon-calendar" viewBox="0 0 24 24"><path fill="currentColor" d="M19 4h-1V2h-2v2H8V2H6v2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 16H5V10h14v10zm0-12H5V6h14v2z"/></symbol>
+  <symbol id="icon-chat" viewBox="0 0 24 24"><path fill="currentColor" d="M20 2H4c-1.1 0-2 .9-2 2v18l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm-2 12H6v-2h12v2zm0-3H6V9h12v2zm0-3H6V6h12v2z"/></symbol>
+  <symbol id="icon-door" viewBox="0 0 24 24"><path fill="currentColor" d="M19 19V5c0-1.1-.9-2-2-2H7c-1.1 0-2 .9-2 2v14l5-5h9c1.1 0 2-.9 2-2zM10.5 14.5v-3h3v3h-3zM18 14.5v-3h2.5v3H18z"/></symbol>
+</defs></svg>
+
+<div class="hero">
+  <div class="logo"><svg><use href="#icon-grad"/></svg></div>
+  <h1>UniverID</h1>
+  <p class="tagline">Цифровая экосистема университета</p>
+  <p class="desc">Электронная зачётка, расписание, связь с деканатом, проход в общежитие — всё в одном приложении</p>
+  <div class="features">
+    <div class="feature"><svg><use href="#icon-book"/></svg><span>Электронная зачётка</span></div>
+    <div class="feature"><svg><use href="#icon-calendar"/></svg><span>Расписание</span></div>
+    <div class="feature"><svg><use href="#icon-chat"/></svg><span>Чат с деканом</span></div>
+    <div class="feature"><svg><use href="#icon-door"/></svg><span>Проход в общежитие</span></div>
+  </div>
+</div>
+</body>
+</html>
