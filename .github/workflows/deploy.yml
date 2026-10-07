@@ -25,3 +25,10 @@ jobs:
       - name: Restart nginx container
         run: |
           ssh archive@85.143.101.97 "docker compose -f ~/univerid.ru/docker-compose.yml up -d"
+
+      - name: Smoke check
+        run: |
+          sleep 5
+          code=$(curl -s -o /dev/null -w '%{http_code}' https://univerid.ru/)
+          echo "HTTP $code"
+          [ "$code" = "200" ]
