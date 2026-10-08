@@ -40,6 +40,7 @@
 .slide-heading > p { max-width:690px; margin:0; color:var(--brand-muted); font-size:14px; line-height:1.65; }
 .problem-grid { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:14px; }
 .pitch-card { border:1px solid var(--brand-line); border-radius:18px; background:#fff; box-shadow:0 6px 18px rgba(20,32,56,.04); }
+.pitch-card.pitch-copy-card { border-color:rgba(255,255,255,.14); color:#ecf2fb; background:rgba(255,255,255,.07); box-shadow:0 24px 65px rgba(0,0,0,.17); }
 .problem-card { min-height:190px; padding:23px; }
 .card-index { display:grid; width:35px; height:35px; place-items:center; border-radius:12px; color:#3b5ed5; background:#edf2ff; font-size:10px; font-weight:850; }
 .problem-card h3 { margin:20px 0 7px; color:var(--brand-ink); font-size:17px; letter-spacing:-.025em; }
