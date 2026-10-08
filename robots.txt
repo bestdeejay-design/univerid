@@ -7,7 +7,4 @@ Disallow: /tilda/popup*
 Disallow: /tilda/cart*
 Disallow: /tilda/product*
 Disallow: /tilda/event*
-Disallow:
-
-
-Sitemap: http://univerid.ru/sitemap.xml
+Sitemap: https://univerid.ru/sitemap.xml
