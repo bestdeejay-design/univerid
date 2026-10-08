@@ -1095,57 +1095,78 @@ body {
   font-size: 12px;
   color: var(--text-muted);
 }
-/* Decorative, deliberately non-scannable QR placeholder used in the prototype. */
-.qr-placeholder {
-  position: relative;
-  width: 180px;
-  height: 180px;
-  display: grid;
-  place-items: center;
-  margin: 0 auto 16px;
-  overflow: hidden;
-  border: 10px solid #fff;
-  border-radius: 12px;
-  background-color: #f1f5f9;
-  background-image: repeating-conic-gradient(#52627a 0 25%, #e7edf4 0 50%);
-  background-size: 20px 20px;
-  box-shadow: 0 4px 18px rgba(0,0,0,.18);
+/* Keep the demo action and role selector in the first viewport on small screens. */
+#landing .hero { min-height: 100vh; min-height: 100svh; }
+.role-switch button:focus-visible { outline: 3px solid var(--primary); outline-offset: 4px; }
+.landing-links a { min-height: 36px; }
+
+@media (max-width: 600px) {
+  #landing .hero {
+    justify-content: flex-start;
+    padding: 44px 18px 26px;
+  }
+  #landing .hero .logo {
+    width: 64px;
+    height: 64px;
+    border-radius: 18px;
+    margin-bottom: 10px;
+  }
+  #landing .hero .logo .icon-lg { width: 40px; height: 40px; }
+  #landing .hero h1 { font-size: 38px; margin-bottom: 4px; }
+  #landing .hero .tagline { font-size: 15px; margin-bottom: 10px; }
+  #landing .hero .desc { max-width: 340px; font-size: 13px; line-height: 1.4; margin-bottom: 12px; }
+  #landing .hero .features {
+    order: 6;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 8px;
+    width: min(100%, 360px);
+    margin: 16px 0 8px;
+  }
+  #landing .hero .feature {
+    width: auto;
+    min-height: 48px;
+    flex-direction: row;
+    justify-content: flex-start;
+    gap: 8px;
+    padding: 9px 10px;
+    border-radius: 12px;
+    text-align: left;
+  }
+  #landing .hero .feature .icon { width: 22px; height: 22px; flex: 0 0 auto; }
+  #landing .hero .feature span:last-child { font-size: 12px; line-height: 1.25; }
+  #landing .hero .role-switch {
+    order: 4;
+    margin: 7px 0 13px !important;
+    gap: 9px !important;
+  }
+  #landing .hero .role-switch > span { font-size: 13px !important; }
+  #landing .hero .btn-primary { order: 5; min-height: 48px; padding: 13px 28px; font-size: 16px; }
+  #landing .hero .landing-links {
+    order: 7;
+    gap: 7px !important;
+    margin-top: 14px !important;
+  }
+  #landing .hero .landing-links a[href="docs/presentation.html"],
+  #landing .hero .landing-links a[href="partner-demo.html"] { order: -1; }
+  #landing .hero .landing-links a { min-height: 34px; padding: 7px 10px !important; font-size: 11px !important; }
+  #landing .hero .landing-links .icon { width: 14px !important; height: 14px !important; }
+  #landing .hero .note { order: 8; margin-top: 12px; }
+  #landing .theme-toggle { top: 10px; right: 10px; width: 38px; height: 38px; }
 }
-.qr-placeholder::before,
-.qr-placeholder::after {
-  content: "";
-  position: absolute;
-  width: 28px;
-  height: 28px;
-  border: 6px solid #142038;
-  background: #fff;
-  box-shadow: inset 0 0 0 6px #142038;
+
+@media (max-width: 380px) {
+  #landing .hero { padding: 42px 16px 22px; }
+  #landing .hero .role-switch { gap: 7px !important; }
+  #landing .hero .role-switch > span { font-size: 12px !important; }
+  #landing .hero .landing-links { gap: 6px !important; }
+  #landing .hero .landing-links a { padding-inline: 8px !important; }
 }
-.qr-placeholder::before { top: 7px; left: 7px; }
-.qr-placeholder::after { top: 7px; right: 7px; }
-.qr-placeholder span {
-  position: relative;
-  z-index: 1;
-  padding: 6px 9px;
-  border: 2px solid #142038;
-  border-radius: 6px;
-  color: #142038;
-  background: #fff;
-  font-size: 12px;
-  font-weight: 900;
-  letter-spacing: .06em;
+
+@media (max-width: 600px) and (max-height: 740px) {
+  #landing .hero { padding-top: 38px; }
+  #landing .hero .logo { width: 56px; height: 56px; margin-bottom: 8px; }
+  #landing .hero .logo .icon-lg { width: 34px; height: 34px; }
+  #landing .hero .desc { margin-bottom: 7px; }
+  #landing .hero .role-switch { margin-bottom: 9px !important; }
+  #landing .hero .features { margin-top: 10px; }
 }
-.qr-placeholder-small {
-  width: 64px;
-  height: 64px;
-  flex: 0 0 auto;
-  margin: 0;
-  border-width: 5px;
-  border-radius: 8px;
-  background-size: 10px 10px;
-}
-.qr-placeholder-small::before,
-.qr-placeholder-small::after { width: 11px; height: 11px; border-width: 3px; box-shadow: inset 0 0 0 2px #142038; }
-.qr-placeholder-small::before { top: 2px; left: 2px; }
-.qr-placeholder-small::after { top: 2px; right: 2px; }
-.qr-placeholder-small span { padding: 2px 3px; border-width: 1px; font-size: 7px; }

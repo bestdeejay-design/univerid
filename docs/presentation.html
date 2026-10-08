@@ -1,12 +1,18 @@
 <!doctype html>
-<html lang="ru">
+<html lang="ru" data-theme="dark">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="theme-color" content="#142038">
+  <meta name="theme-color" content="#0e1727">
   <title>UniverID — короткий питч</title>
   <meta name="description" content="Короткий питч UniverID: концепция, интерактивный сценарий для работодателя, текущий статус прототипа и возможный формат безвозвратной поддержки.">
   <link rel="canonical" href="https://univerid.ru/docs/presentation.html">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><path fill='%23a855f7' d='M12 3L1 9l4 2.18v6L12 21l7-3.82v-6l4-2.18L12 3zm6.82 6L12 12.72 5.18 9 12 5.28 18.82 9zM17 15.99l-5 2.73-5-2.73v-3.72L12 15l5-2.73v3.72z'/></svg>" type="image/svg+xml">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://univerid.ru/docs/presentation.html">
+  <meta property="og:title" content="UniverID — короткий питч">
+  <meta property="og:description" content="Короткий питч о концепции UniverID, интерактивном сценарии и возможной безвозвратной поддержке.">
+  <meta property="og:image" content="https://univerid.ru/og-image.png">
   <link rel="stylesheet" href="../css/site.css">
   <link rel="stylesheet" href="../css/presentation.css">
   <script src="../js/presentation.js" defer></script>
@@ -15,11 +21,14 @@
   <a class="skip-link" href="#slide-0">Перейти к питчу</a>
   <header class="pitch-bar">
     <a class="brand-lockup" href="../" aria-label="UniverID — главная">
-      <span class="brand-mark" aria-hidden="true">U</span>
+      <span class="brand-mark" aria-hidden="true"><svg class="brand-mark-icon" viewBox="0 0 24 24"><path d="M12 3L1 9l4 2.18v6L12 21l7-3.82v-6l4-2.18L12 3zm6.82 6L12 12.72 5.18 9 12 5.28 18.82 9zM17 15.99l-5 2.73-5-2.73v-3.72L12 15l5-2.73v3.72z"/></svg></span>
       <span><span class="brand-name">Univer<span>ID</span></span><span class="brand-caption">короткий питч</span></span>
     </a>
     <div class="pitch-bar-center"><span id="slideCounter">01 / 06</span><div class="pitch-progress" id="pitchProgress" role="progressbar" aria-label="Ход презентации" aria-valuemin="1" aria-valuemax="6" aria-valuenow="1"><span id="pitchProgressFill"></span></div></div>
-    <a class="pitch-home" href="../">На главную <span aria-hidden="true">↗</span></a>
+    <div class="pitch-bar-actions">
+      <button class="pitch-theme-toggle" id="pitchThemeToggle" type="button" role="switch" aria-checked="true" aria-label="Тёмная тема" title="Тёмная тема включена"><span aria-hidden="true">☀</span></button>
+      <a class="pitch-home" href="../">На главную <span aria-hidden="true">↗</span></a>
+    </div>
   </header>
 
   <nav class="pitch-dots" id="slideNav" aria-label="Переход к слайду"></nav>

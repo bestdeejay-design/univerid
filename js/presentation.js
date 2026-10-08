@@ -1,4 +1,30 @@
 (() => {
+  const themeToggle = document.getElementById('pitchThemeToggle');
+  let activeTheme = 'dark';
+
+  function applyTheme(theme, persist = false) {
+    activeTheme = theme === 'light' ? 'light' : 'dark';
+    document.documentElement.setAttribute('data-theme', activeTheme);
+    const themeColor = document.querySelector('meta[name="theme-color"]');
+    if (themeColor) themeColor.setAttribute('content', activeTheme === 'dark' ? '#0e1727' : '#f5f7fb');
+    if (themeToggle) {
+      themeToggle.setAttribute('aria-checked', String(activeTheme === 'dark'));
+      themeToggle.title = activeTheme === 'dark' ? 'Тёмная тема включена' : 'Светлая тема включена';
+      const glyph = themeToggle.querySelector('span');
+      if (glyph) glyph.textContent = activeTheme === 'dark' ? '☀' : '☾';
+    }
+    if (persist) {
+      try { localStorage.setItem('univerid-theme', activeTheme); } catch (_) { /* storage may be unavailable */ }
+    }
+  }
+
+  let savedTheme = null;
+  try { savedTheme = localStorage.getItem('univerid-theme'); } catch (_) { /* use the site default */ }
+  applyTheme(savedTheme === 'light' ? 'light' : 'dark');
+  if (themeToggle) {
+    themeToggle.addEventListener('click', () => applyTheme(activeTheme === 'dark' ? 'light' : 'dark', true));
+  }
+
   const slides = Array.from(document.querySelectorAll('.pitch-slide'));
   const nav = document.getElementById('slideNav');
   const counter = document.getElementById('slideCounter');
