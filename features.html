@@ -145,6 +145,15 @@
       margin-top:7px;
     }
 
+    .brand-home {
+      display:inline-flex; align-items:center; gap:9px;
+      color:var(--text); text-decoration:none;
+      font-size:17px; font-weight:800; letter-spacing:-.03em;
+      margin-bottom:20px; opacity:.92; transition:opacity .2s;
+    }
+    .brand-home:hover { opacity:1; }
+    .brand-home svg { width:24px; height:24px; color:var(--primary); }
+
     .back-link {
       display:inline-flex; align-items:center; gap:6px;
       padding:8px 16px;
@@ -231,7 +240,12 @@
 </svg>
 
 <div class="page">
-  <a href="/" class="back-link">
+  <a href="index.html" class="brand-home" aria-label="UniverID — на главную">
+    <svg><use href="#icon-grad"/></svg>
+    <span>UniverID</span>
+  </a>
+
+  <a href="index.html" class="back-link">
     <svg><use href="#icon-arrow-left"/></svg>
     На главную
   </a>
@@ -248,15 +262,15 @@
   <div class="cat-grid" id="catGrid"></div>
 
   <div class="footer-links">
-    <a href="/" class="btn-secondary">
+    <a href="index.html" class="btn-secondary">
       <svg><use href="#icon-arrow-left"/></svg>
       На главную
     </a>
-    <a href="/#student" class="btn-primary">
+    <a href="index.html#student" class="btn-primary">
       Демо: Студент
       <svg><use href="#icon-arrow"/></svg>
     </a>
-    <a href="/#graduate" class="btn-secondary">
+    <a href="index.html#graduate" class="btn-secondary">
       Демо: Выпускник
     </a>
     <a href="quest.html" class="btn-secondary">

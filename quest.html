@@ -49,6 +49,43 @@
       transition: opacity 0.4s;
     }
 
+    /* Fixed header (logo → home) */
+    .quest-header {
+      position: fixed; top: 16px; left: 24px; z-index: 102;
+      display: flex; align-items: center;
+    }
+    .quest-header a {
+      display: inline-flex; align-items: center; gap: 8px;
+      padding: 6px 14px 6px 10px; border-radius: 50px;
+      background: rgba(19,22,43,0.85);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border: 1px solid var(--border);
+      color: var(--text); text-decoration: none;
+      font-size: 14px; font-weight: 600; letter-spacing: 0.2px;
+      transition: opacity 0.2s, border-color 0.2s;
+    }
+    .quest-header a:hover { opacity: 0.85; border-color: var(--primary); }
+    .quest-header .icon { width: 18px; height: 18px; color: var(--primary-light); }
+
+    /* Scene prev/next arrows */
+    .scene-nav {
+      position: fixed; top: 50%; transform: translateY(-50%); z-index: 99;
+      width: 44px; height: 44px; border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      background: rgba(19,22,43,0.85);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border: 1px solid var(--border);
+      color: var(--text); font-size: 26px; line-height: 1;
+      cursor: pointer;
+      transition: background 0.2s, border-color 0.2s, opacity 0.3s;
+    }
+    .scene-nav:hover { background: rgba(26,31,58,0.95); border-color: var(--primary); }
+    .scene-nav:disabled { opacity: 0.3; cursor: default; pointer-events: none; }
+    .scene-nav-prev { left: 16px; }
+    .scene-nav-next { right: 16px; }
+
     /* Scenes container */
     .scenes {
       scroll-snap-type: y mandatory;
@@ -503,6 +540,14 @@
       .scene-module .module-content { max-width: 100%; }
     }
 
+    @media (max-width: 640px) {
+      .scene-nav { width: 36px; height: 36px; font-size: 22px; }
+      .scene-nav-prev { left: 6px; }
+      .scene-nav-next { right: 6px; }
+      .quest-header { top: 12px; left: 12px; }
+      .quest-header a { padding: 5px 12px 5px 9px; font-size: 13px; }
+    }
+
     @media (max-width: 400px) {
       .scene { padding: 40px 16px; }
       .role-grid { grid-template-columns: 1fr 1fr; gap: 8px; }
@@ -549,12 +594,19 @@
   </defs>
 </svg>
 
+<header class="quest-header">
+  <a href="index.html" aria-label="UniverID — на главную">
+    <svg class="icon"><use href="#icon-grad"/></svg>
+    <span>UniverID</span>
+  </a>
+</header>
+
 <canvas id="particles"></canvas>
 
 <div class="quest-progress">
   <div class="quest-progress-bar" id="progressBar"></div>
 </div>
-<div class="quest-step-label" id="stepLabel">00 / 20</div>
+<div class="quest-step-label" id="stepLabel">00 / 25</div>
 
 <div class="scenes" id="scenes">
 
@@ -632,6 +684,9 @@
   <div id="moduleScenes"></div>
 
 </div>
+
+<button class="scene-nav scene-nav-prev" id="scenePrevBtn" aria-label="Предыдущий слайд" title="Предыдущий слайд" type="button" disabled>‹</button>
+<button class="scene-nav scene-nav-next" id="sceneNextBtn" aria-label="Следующий слайд" title="Следующий слайд" type="button">›</button>
 
 <!-- AI Guide floating -->
 <div class="ai-guide" id="aiGuide" onclick="scrollToNext()">
@@ -711,6 +766,7 @@
     renderFinale();
     setupScrollTracking();
     setupFeatureReveal();
+    setupSceneNavigation();
     setupParticles();
     setTimeout(() => document.querySelector('.ai-guide').classList.add('visible'), 1500);
   }
@@ -827,7 +883,7 @@
           '</div>' +
         '</div>' +
         '<div style=\"text-align:center;margin-top:48px;\">' +
-          '<button class=\"btn-primary\" onclick=\"scrollToModule(22)\">К финалу <svg class=\"icon\"><use href=\"#icon-arrow\"/></svg></button>' +
+          '<button class=\"btn-primary\" onclick=\"scrollToModule(21)\">К финалу <svg class=\"icon\"><use href=\"#icon-arrow\"/></svg></button>' +
         '</div>' +
       '</div>';
     container.appendChild(scene);
@@ -887,9 +943,36 @@
     document.querySelectorAll('.ai-metric').forEach(el => obs.observe(el));
   }
 
-  function scrollToNext() {
+  function getSceneList() {
+    return Array.from(document.querySelectorAll('#scenes .scene'));
+  }
+
+  function getCurrentSceneIndex() {
     const scenesEl = document.getElementById('scenes');
-    scenesEl.scrollBy({ top: window.innerHeight, behavior: 'smooth' });
+    const scenes = getSceneList();
+    const top = scenesEl.scrollTop + scenesEl.offsetTop;
+    for (let i = 0; i < scenes.length; i++) {
+      if (Math.abs(scenes[i].offsetTop - top) <= 10) return i;
+    }
+    let idx = 0;
+    for (let i = 0; i < scenes.length; i++) {
+      if (scenes[i].offsetTop <= top + 10) idx = i;
+    }
+    return idx;
+  }
+
+  function goToScene(idx) {
+    const scenes = getSceneList();
+    if (idx < 0 || idx >= scenes.length) return;
+    scenes[idx].scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }
+
+  function scrollToNext() {
+    goToScene(getCurrentSceneIndex() + 1);
+  }
+
+  function scrollToPrev() {
+    goToScene(getCurrentSceneIndex() - 1);
   }
 
   function scrollToModule(idx) {
@@ -899,12 +982,51 @@
     }
   }
 
+  function setupSceneNavigation() {
+    const scenesEl = document.getElementById('scenes');
+    const prevBtn = document.getElementById('scenePrevBtn');
+    const nextBtn = document.getElementById('sceneNextBtn');
+
+    prevBtn.addEventListener('click', scrollToPrev);
+    nextBtn.addEventListener('click', scrollToNext);
+
+    function updateNavButtons() {
+      const idx = getCurrentSceneIndex();
+      const total = getSceneList().length;
+      prevBtn.disabled = idx <= 0;
+      nextBtn.disabled = idx >= total - 1;
+    }
+    scenesEl.addEventListener('scroll', updateNavButtons, { passive: true });
+    updateNavButtons();
+
+    document.addEventListener('keydown', (e) => {
+      const t = e.target;
+      if (t && t.closest && t.closest('input, textarea, select, [contenteditable]')) return;
+
+      const key = e.key;
+      if (key === ' ' || e.code === 'Space') {
+        if (t && t.closest && t.closest('button, a, [role="button"]')) return;
+        e.preventDefault();
+        scrollToNext();
+        return;
+      }
+      let dir = 0;
+      if (key === 'ArrowRight' || key === 'ArrowDown' || key === 'PageDown') dir = 1;
+      else if (key === 'ArrowLeft' || key === 'ArrowUp' || key === 'PageUp') dir = -1;
+      else if (key === 'Home') { e.preventDefault(); goToScene(0); return; }
+      else if (key === 'End') { e.preventDefault(); goToScene(getSceneList().length - 1); return; }
+      else return;
+      e.preventDefault();
+      if (dir > 0) scrollToNext(); else scrollToPrev();
+    });
+  }
+
   function startJourney() {
     document.getElementById('scenes').scrollTop = window.innerHeight;
   }
 
   function openDemo(role) {
-    window.location.href = '/#' + role;
+    window.location.href = 'index.html#' + role;
   }
 
   // Particles
